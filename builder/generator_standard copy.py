@@ -1,5 +1,5 @@
 from docx import Document
-from docx.shared import Inches, Pt, RGBColor, Cm
+from docx.shared import Inches, Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_TAB_ALIGNMENT, WD_LINE_SPACING
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
@@ -11,18 +11,12 @@ import re # Import re module for URL cleaning
 # Stores the calculated right margin end for consistent tab stop placement
 global_margin_end = None
 
-def _calculate_margin_end(doc, right_padding=Inches(0.12)):
-    """
-    Calculates the absolute right margin position for tab stop alignment (as a Length).
-    Subtracts a small padding so right-aligned text won't touch the page margin.
-    `right_padding` is adjustable (default 0.12") if you want more/less gap.
-    """
+def _calculate_margin_end(doc):
+    """Calculates the right edge of the content area within the document's margins."""
     global global_margin_end
     if global_margin_end is None:
         section = doc.sections[0]
-        # page_width and margins are Length objects; subtract a small padding so text doesn't touch edge
-        right_edge = section.page_width - section.right_margin - Cm(1.27)
-        global_margin_end = right_edge
+        global_margin_end = Inches(section.page_width.inches - (section.left_margin.inches + section.right_margin.inches))
     return global_margin_end
 
 def _set_default_font_style(doc):
@@ -175,24 +169,9 @@ def _add_left_right_paragraph(doc_obj, left_content, right_display_text, right_u
     if right_display_text.strip():
         # Adds a tab character to push the subsequent text to the right-aligned tab stop.
         p.add_run("\t")
-        if right_url:
-            normalized_url = right_url.strip()
-            # Consider as hyperlink if it starts with http(s) or looks like a domain/path
-            if (
-                normalized_url.startswith("http://")
-                or normalized_url.startswith("https://")
-                or "." in normalized_url
-                or "/" in normalized_url
-            ):
-                if not (normalized_url.startswith("http://") or normalized_url.startswith("https://")):
-                    normalized_url = "https://" + normalized_url
-                _add_hyperlink(doc_obj, p, normalized_url, right_display_text, right_size)
-            else:
-                # Plain text
-                run_right = p.add_run(right_display_text)
-                run_right.font.size = Pt(right_size)
-                run_right.font.name = 'Cambria'
-                run_right.italic = right_italic
+        if right_url and (right_url.startswith("http://") or right_url.startswith("https://")):
+            # If a valid URL is provided, it's a hyperlink. _add_hyperlink handles formatting.
+            _add_hyperlink(doc_obj, p, right_url, right_display_text, right_size)
         else:
             # If no valid URL, it's plain text. Apply font and italic if requested.
             run_right = p.add_run(right_display_text)
@@ -581,17 +560,6 @@ def generate_structured_resume(data, template_path=None):
     Generates a complete resume document in DOCX format based on the provided structured data.
     """
     doc = Document()
-
-    # Set narrow margins (0.5" all sides)
-    section = doc.sections[0]
-    section.top_margin = Inches(0.5)
-    section.bottom_margin = Inches(0.5)
-    section.left_margin = Inches(0.5)
-    section.right_margin = Inches(0.5)
-
-    # Force recalculation of cached margin end (important if this module is reused)
-    global global_margin_end
-    global_margin_end = None
 
     # Initializes document-wide default font and line spacing for consistency.
     _set_default_font_style(doc)
