@@ -5,16 +5,24 @@ import google.generativeai as genai
 
 def get_gemini_api_key():
     api_key = os.getenv("GEMINI_API_KEY")
-    if not api_key:
-        if "gemini_api_key" not in st.session_state:
-            st.session_state.gemini_api_key = ""
-        with st.expander("🔑 How to get your Google Gemini API Key"):
-            st.markdown("""
-            1. Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
-            2. Create or copy an API key
-            3. Paste below
-            """)
-            st.session_state.gemini_api_key = st.text_input("Enter Gemini API Key", type="password")
+    if api_key:
+        return api_key
+        
+    if "gemini_api_key" not in st.session_state:
+        st.session_state.gemini_api_key = ""
+        
+    with st.expander("🔑 How to get your Google Gemini API Key"):
+        st.markdown("""
+        1. Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
+        2. Create or copy an API key
+        3. Paste below
+        """)
+        # Use a stable key to persist the text input value across reruns automatically
+        st.text_input("Enter Gemini API Key", type="password", key="gemini_api_key_input")
+        
+    if st.session_state.get("gemini_api_key_input"):
+        st.session_state.gemini_api_key = st.session_state.gemini_api_key_input
+        
     return st.session_state.gemini_api_key
 
 def perform_ai_ats_analysis(text, api_key):
@@ -39,6 +47,8 @@ def perform_ai_ats_analysis(text, api_key):
         13. Personal Information / Bias Triggers  
         14. Other Strengths and Weaknesses  
 
+        IMPORTANT: All feedback comments in the "Positives" and "Negatives" arrays MUST be written in Vietnamese.
+        
         Return a **single valid JSON object**, and nothing else.
 
         The structure must follow this strict format:
@@ -65,7 +75,7 @@ def perform_ai_ats_analysis(text, api_key):
             -   Do NOT break the format or insert partial structures like "Positives": [], }}
             -   Do NOT output markdown, comments, explanations, or headings
             -   The ONLY output should be a clean JSON object (no preamble, no explanation)
-            -   Every "Positives" and "Negatives" list should contain detailed, constructive, and example-backed feedback
+            -   Every "Positives" and "Negatives" list should contain detailed, constructive, and example-backed feedback in Vietnamese
             -   Be thorough and professionally critical, but fair
 
         Resume Text:
@@ -80,7 +90,7 @@ def perform_ai_ats_analysis(text, api_key):
         json_end = raw_text.rfind("}") + 1
 
         if json_start == -1 or json_end == -1:
-            st.error("❌ No JSON block detected in the AI response.")
+            st.error("❌ Không phát hiện thấy khối JSON nào trong phản hồi từ AI.")
             st.stop()
 
         json_str = raw_text[json_start:json_end]
@@ -89,10 +99,10 @@ def perform_ai_ats_analysis(text, api_key):
             parsed = json.loads(json_str)
             return parsed
         except json.JSONDecodeError as json_err:
-            st.error(f"❌ Failed to parse AI response as JSON: {json_err}")
+            st.error(f"❌ Không thể phân tích phản hồi từ AI dưới dạng JSON: {json_err}")
             st.code(json_str, language="json")
             st.stop()
 
     except Exception as e:
-        st.error(f"❌ Unexpected error during AI analysis: {e}")
+        st.error(f"❌ Lỗi không mong đợi trong quá trình phân tích bằng AI: {e}")
         st.stop()

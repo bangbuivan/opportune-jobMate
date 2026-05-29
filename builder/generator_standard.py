@@ -304,7 +304,7 @@ def add_header_section(doc, name, title, location, email, phone, website, linked
 def add_summary_section(doc, summary_text):
     """Adds the Summary section of the resume."""
     if summary_text.strip():
-        _add_section_title(doc, "Summary")
+        _add_section_title(doc, "Tóm tắt chuyên môn")
         p = doc.add_paragraph(summary_text)
         p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.SINGLE
         p.paragraph_format.space_after = Pt(2)
@@ -324,7 +324,7 @@ def add_education_section(doc, education_entries):
     ]
 
     if valid_education_entries:
-        _add_section_title(doc, "Education")
+        _add_section_title(doc, "Học vấn")
         for edu in valid_education_entries:
             # --- Line 1: University (Bold) <tabstop> Dates ---
             left_university_content = []
@@ -376,7 +376,7 @@ def add_education_section(doc, education_entries):
                 # Clean up coursework text (it's a single string from text_area, but might have newlines)
                 cleaned_coursework = ", ".join([line.strip() for line in coursework_text.splitlines() if line.strip()])
                 
-                coursework_run = coursework_para.add_run(f"Relevant Coursework: {cleaned_coursework}")
+                coursework_run = coursework_para.add_run(f"Môn học liên quan: {cleaned_coursework}")
                 coursework_run.font.size = Pt(10)
                 coursework_run.font.name = 'Cambria'
 
@@ -387,7 +387,7 @@ def add_work_experience_section(doc, experiences):
     valid_experiences = [exp for exp in experiences if exp['job_title'].strip() and exp['company'].strip()]
 
     if valid_experiences:
-        _add_section_title(doc, "Work Experience")
+        _add_section_title(doc, "Kinh nghiệm làm việc")
         for exp in valid_experiences:
             # Prepares left-aligned content (Job Title, Company, Location) with formatting.
             left_exp_content = []
@@ -460,7 +460,7 @@ def add_projects_section(doc, projects):
     valid_projects = [proj for proj in projects if proj['title'].strip() or proj['description']] # Modified check for description
 
     if valid_projects:
-        _add_section_title(doc, "Projects")
+        _add_section_title(doc, "Dự án")
         for proj in valid_projects:
             # Adds the Project Title (left) and Live Demo Link (right).
             left_proj_title_content = [(proj['title'].strip(), True, False)]
@@ -478,7 +478,7 @@ def add_projects_section(doc, projects):
             if tech_stack_text or github_url:
                 left_tech_stack_content = []
                 if tech_stack_text:
-                    left_tech_stack_content.append((f"Tools Used: {tech_stack_text}", False, False))
+                    left_tech_stack_content.append((f"Công cụ sử dụng: {tech_stack_text}", False, False))
                 
                 if left_tech_stack_content or github_url:
                     _add_left_right_paragraph(doc, left_tech_stack_content, github_display_text, github_url, left_size=10, right_size=10)
@@ -502,13 +502,13 @@ def add_skills_section(doc, technical_skills, soft_skills):
     cleaned_soft_skills = [s.strip() for s in soft_skills if s.strip()]
 
     if cleaned_tech_skills or cleaned_soft_skills:
-        _add_section_title(doc, "Skills")
+        _add_section_title(doc, "Kỹ năng")
         if cleaned_tech_skills:
             tech_para = doc.add_paragraph()
             tech_para.paragraph_format.line_spacing_rule = WD_LINE_SPACING.SINGLE
             tech_para.paragraph_format.space_after = Pt(2)
             tech_para.paragraph_format.space_before = Pt(2)
-            tech_para.add_run("Technical Skills: ").bold = True
+            tech_para.add_run("Kỹ năng chuyên môn: ").bold = True
             tech_para.runs[0].font.size = Pt(10)
             tech_para.runs[0].font.name = 'Cambria'
             
@@ -522,7 +522,7 @@ def add_skills_section(doc, technical_skills, soft_skills):
             soft_para.paragraph_format.line_spacing_rule = WD_LINE_SPACING.SINGLE
             soft_para.paragraph_format.space_after = Pt(2)
             soft_para.paragraph_format.space_before = Pt(2)
-            soft_para.add_run("Soft Skills: ").bold = True
+            soft_para.add_run("Kỹ năng mềm: ").bold = True
             soft_para.runs[0].font.size = Pt(10)
             soft_para.runs[0].font.name = 'Cambria'
             
@@ -536,7 +536,7 @@ def add_certifications_training_section(doc, certifications):
     valid_certifications = [cert for cert in certifications if cert['title'].strip()]
 
     if valid_certifications:
-        _add_section_title(doc, "Certifications and Training")
+        _add_section_title(doc, "Chứng chỉ và Đào tạo")
         for cert in valid_certifications:
             left_cert_content = []
             if cert['title'].strip():
@@ -558,7 +558,7 @@ def add_achievements_section(doc, achievements):
     cleaned_achievements = [a.strip() for a in achievements if a.strip()]
 
     if cleaned_achievements:
-        _add_section_title(doc, "Achievements")
+        _add_section_title(doc, "Thành tích")
         for achievement in cleaned_achievements:
             _add_bullet_point(doc, achievement)
 
@@ -567,7 +567,7 @@ def add_hobbies_section(doc, hobbies):
     cleaned_hobbies = [h.strip() for h in hobbies if h.strip()]
 
     if cleaned_hobbies:
-        _add_section_title(doc, "Hobbies")
+        _add_section_title(doc, "Sở thích")
         p = doc.add_paragraph(", ".join(cleaned_hobbies))
         p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.SINGLE
         p.paragraph_format.space_after = Pt(2)

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerForge AI - Nền tảng Hỗ trợ Nghề nghiệp Thông minh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="header">
+        <div class="logo">
+            <i data-lucide="briefcase"></i>
+            <span>CareerForge AI</span>
+        </div>
+        <nav id="navbar">
+            <a href="#" data-target="view-dashboard" class="active"><i data-lucide="layout-dashboard"></i> Bảng điều khiển</a>
+            <a href="#" data-target="view-career-match"><i data-lucide="compass"></i> Gợi ý Nghề nghiệp</a>
+            <a href="#" data-target="view-job-matcher"><i data-lucide="target"></i> So Khớp Việc làm</a>
+            <a href="#" data-target="view-skill-bridge"><i data-lucide="book-open"></i> Cầu nối Kỹ năng</a>
+            <a href="#" data-target="view-ats-tuneup"><i data-lucide="settings"></i> Tối ưu hóa ATS</a>
+            <a href="#" data-target="view-job-radar"><i data-lucide="radar"></i> Dò Tìm Việc làm</a>
+            <a href="#" data-target="view-resume-builder"><i data-lucide="file-edit"></i> Tạo CV</a>
+            <a href="#" data-target="view-cover-letter"><i data-lucide="mail"></i> Thư ứng tuyển</a>
+            <a href="#" data-target="view-interview-prep"><i data-lucide="mic"></i> Luyện phỏng vấn</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- ==================== DASHBOARD VIEW ==================== -->
+        <div id="view-dashboard" class="view">
+            <section class="hero">
+                <h1>Mở lối thành công cho <span>Sự nghiệp của bạn</span></h1>
+                <p>Chào mừng đến với CareerForge AI, nền tảng kết hợp tối ưu hóa CV, căn chỉnh ATS và luyện phỏng vấn thử.</p>
+            </section>
+
+            <!-- Metrics Column -->
+            <section class="grid-3-cols" style="margin-bottom: 2rem;">
+                <div class="glass-panel text-center">
+                    <h3 style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">Điểm Tương thích ATS Trung bình</h3>
+                    <div class="score-circle" style="width: 80px; height: 80px; font-size: 1.5rem; margin: 1rem auto 0.5rem; border-color: var(--primary); background: rgba(13,148,136,0.1);">78%</div>
+                    <span class="success-text" style="font-size: 0.85rem;"><i data-lucide="trending-up" style="width: 14px; height: 14px; vertical-align: -2px;"></i> +4% Cải thiện</span>
+                </div>
+                <div class="glass-panel text-center">
+                    <h3 style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">Tích hợp</h3>
+                    <div class="score-circle" style="width: 80px; height: 80px; font-size: 1.5rem; margin: 1rem auto 0.5rem; border-color: var(--accent); background: rgba(217,119,6,0.1);">5</div>
+                    <span class="warning-text" style="font-size: 0.85rem;">Cổng Thông tin Việc làm</span>
+                </div>
+                <div class="glass-panel text-center">
+                    <h3 style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">Chẩn đoán Hệ thống</h3>
+                    <div style="margin: 1.5rem 0 1rem; display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+                        <span class="badge success" style="font-size: 0.75rem;"><i data-lucide="check" style="width:12px; height:12px; vertical-align:-1px;"></i> Động cơ NLP spaCy Hoạt động</span>
+                        <span class="badge success" style="font-size: 0.75rem;"><i data-lucide="check" style="width:12px; height:12px; vertical-align:-1px;"></i> Chỉ mục FAISS Hoạt động</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feature Navigation Cards -->
+            <h2 style="margin-bottom: 1.5rem;"><i data-lucide="layout"></i> Khám phá các Công cụ</h2>
+            <section class="grid-2-cols" style="margin-bottom: 3rem;">
+                <!-- Resume Builder -->
+                <div class="glass-panel feature-nav-card" data-view="view-resume-builder" style="cursor: pointer; transition: transform 0.2s ease;">
+                    <h3 style="color: white; display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="file-edit" style="color: var(--primary);"></i> Tạo CV</h3>
+                    <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.9rem; line-height: 1.4;">Tạo và thiết kế bản CV dạng DOCX chuyên nghiệp, tối ưu hóa ATS với nội dung do AI đề xuất.</p>
+                </div>
+                <!-- ATS TuneUp -->
+                <div class="glass-panel feature-nav-card" data-view="view-ats-tuneup" style="cursor: pointer; transition: transform 0.2s ease;">
+                    <h3 style="color: white; display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="settings" style="color: var(--primary);"></i> Tối ưu hóa ATS</h3>
+                    <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.9rem; line-height: 1.4;">Kiểm tra và tối ưu hóa CV để đảm bảo mức độ tương thích cao nhất với hệ thống ATS.</p>
+                </div>
+                <!-- Cover Letter -->
+                <div class="glass-panel feature-nav-card" data-view="view-cover-letter" style="cursor: pointer; transition: transform 0.2s ease;">
+                    <h3 style="color: white; display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="mail" style="color: var(--accent);"></i> Thư ứng tuyển</h3>
+                    <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.9rem; line-height: 1.4;">Tạo các bức thư ứng tuyển tùy chỉnh phù hợp với vị trí và giọng văn mong muốn ngay lập tức.</p>
+                </div>
+                <!-- Interview Prep -->
+                <div class="glass-panel feature-nav-card" data-view="view-interview-prep" style="cursor: pointer; transition: transform 0.2s ease;">
+                    <h3 style="color: white; display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="mic" style="color: var(--accent);"></i> Luyện phỏng vấn</h3>
+                    <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.9rem; line-height: 1.4;">Luyện tập các câu hỏi phỏng vấn thử về chuyên môn và hành vi kèm điểm đánh giá chi tiết.</p>
+                </div>
+                <!-- Career Match -->
+                <div class="glass-panel feature-nav-card" data-view="view-career-match" style="cursor: pointer; transition: transform 0.2s ease;">
+                    <h3 style="color: white; display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="compass" style="color: var(--primary);"></i> Gợi ý Nghề nghiệp</h3>
+                    <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.9rem; line-height: 1.4;">Tìm kiếm các vị trí công việc lý tưởng nhất dựa trên hồ sơ năng lực và kỹ năng của bạn.</p>
+                </div>
+                <!-- Skill Bridge -->
+                <div class="glass-panel feature-nav-card" data-view="view-skill-bridge" style="cursor: pointer; transition: transform 0.2s ease;">
+                    <h3 style="color: white; display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="book-open" style="color: var(--primary);"></i> Cầu nối Kỹ năng</h3>
+                    <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.9rem; line-height: 1.4;">Xác định khoảng trống kỹ năng giữa năng lực hiện tại và yêu cầu từ nhà tuyển dụng.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== CAREER MATCH VIEW ==================== -->
+        <div id="view-career-match" class="view hidden">
+            <section class="hero">
+                <h1>Tìm kiếm Công việc Mơ ước bằng <span>AI</span></h1>
+                <p>Tải lên CV và để mạng nơ-ron tiên tiến của chúng tôi gợi ý cho bạn các cơ hội nghề nghiệp phù hợp nhất.</p>
+            </section>
+
+            <section class="upload-section glass-panel">
+                <form id="uploadForm-career">
+                    <div class="file-drop-area" id="dropArea-career">
+                        <i data-lucide="upload-cloud" class="icon-large"></i>
+                        <h3>Kéo & Thả CV của bạn vào đây</h3>
+                        <p>Hỗ trợ định dạng: PDF, DOCX</p>
+                        <input type="file" id="fileInput-career" accept=".pdf, .docx" required>
+                        <label for="fileInput-career" class="btn btn-outline">Duyệt tệp tin</label>
+                    </div>
+
+                    <div class="settings-area">
+                        <div class="setting-group">
+                            <label>Động cơ Gợi ý bằng AI</label>
+                            <div class="radio-group">
+                                <label class="radio-card">
+                                    <input type="radio" name="search_method" value="Basic Skill Match">
+                                    <div class="card-content">
+                                        <i data-lucide="check-circle"></i>
+                                        <span>So khớp Kỹ năng Cơ bản</span>
+                                    </div>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="search_method" value="AI Semantic Search" checked>
+                                    <div class="card-content">
+                                        <i data-lucide="brain"></i>
+                                        <span>Tìm kiếm Ngữ nghĩa AI</span>
+                                    </div>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="search_method" value="AI Keyword Search">
+                                    <div class="card-content">
+                                        <i data-lucide="search"></i>
+                                        <span>Tìm kiếm Từ khóa AI</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="topN-career">Số lượng việc làm gợi ý: <span id="topNValue-career">5</span></label>
+                            <input type="range" id="topN-career" min="1" max="20" value="5">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submitBtn-career">
+                        <i data-lucide="zap"></i> Tìm kiếm việc làm phù hợp
+                    </button>
+                </form>
+                
+                <div id="loader-career" class="loader-container hidden">
+                    <div class="spinner"></div>
+                    <p>Đang phân tích CV bằng AI...</p>
+                </div>
+            </section>
+
+            <section id="resultsSection-career" class="results-section hidden">
+                <div class="glass-panel profile-panel">
+                    <h2><i data-lucide="user"></i> Hồ sơ Ứng viên</h2>
+                    <div class="profile-grid">
+                        <div class="profile-item"><span class="label">Họ và tên</span><span class="value" id="resName"></span></div>
+                        <div class="profile-item"><span class="label">Email</span><span class="value" id="resEmail"></span></div>
+                        <div class="profile-item"><span class="label">Số điện thoại</span><span class="value" id="resPhone"></span></div>
+                        <div class="profile-item"><span class="label">Bằng cấp</span><span class="value" id="resDegree"></span></div>
+                    </div>
+                    <div class="skills-container">
+                        <span class="label">Kỹ năng được phát hiện</span>
+                        <div class="badges" id="resSkills"></div>
+                    </div>
+                </div>
+
+                <div class="jobs-header">
+                    <h2><i data-lucide="target"></i> Vị trí Công việc Đề xuất</h2>
+                    <span class="badge" id="jobsCount-career">0 vị trí tương thích</span>
+                </div>
+                <div class="jobs-list" id="jobsList-career"></div>
+            </section>
+        </div>
+
+        <!-- ==================== JOB MATCHER VIEW ==================== -->
+        <div id="view-job-matcher" class="view hidden">
+            <section class="hero">
+                <h1>CV vs. <span>Mô tả Công việc</span></h1>
+                <p>Kiểm tra mức độ phù hợp của CV với mô tả công việc cụ thể và tính toán điểm tương thích.</p>
+            </section>
+
+            <section class="upload-section glass-panel">
+                <form id="uploadForm-matcher">
+                    <div class="flex-row">
+                        <div class="file-drop-area flex-1" id="dropArea-matcher-resume">
+                            <i data-lucide="file-text" class="icon-large"></i>
+                            <h3>1. Tải lên CV</h3>
+                            <p>Tệp PDF hoặc DOCX</p>
+                            <input type="file" id="fileInput-matcher-resume" accept=".pdf, .docx" required>
+                        </div>
+                        <div class="file-drop-area flex-1" id="dropArea-matcher-jd">
+                            <i data-lucide="briefcase" class="icon-large"></i>
+                            <h3>2. Tải lên Mô tả Công việc</h3>
+                            <p>Tệp PDF hoặc DOCX (Hoặc dán văn bản phía dưới)</p>
+                            <input type="file" id="fileInput-matcher-jd" accept=".pdf, .docx">
+                        </div>
+                    </div>
+                    
+                    <div class="setting-group" style="margin-top:1rem;">
+                        <label>Hoặc dán văn bản Mô tả Công việc:</label>
+                        <textarea id="jd-text-matcher" rows="4" class="custom-textarea" placeholder="Dán mô tả công việc tại đây nếu không tải lên tệp..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submitBtn-matcher">
+                        <i data-lucide="percent"></i> Tính toán mức độ Tương thích
+                    </button>
+                </form>
+                
+                <div id="loader-matcher" class="loader-container hidden">
+                    <div class="spinner"></div>
+                    <p>Đang phân tích so khớp chuyên sâu...</p>
+                </div>
+            </section>
+
+            <section id="resultsSection-matcher" class="results-section hidden">
+                <div class="glass-panel profile-panel text-center">
+                    <h2>Điểm Tương thích Công việc</h2>
+                    <div class="score-circle">
+                        <span id="matcher-score">0</span>%
+                    </div>
+                    <div class="score-breakdown">
+                        <div><span class="label">Khớp Kỹ năng Chuyên môn</span> <span class="value" id="matcher-hard">0%</span></div>
+                        <div><span class="label">Khớp Kỹ năng Mềm</span> <span class="value" id="matcher-soft">0%</span></div>
+                    </div>
+                </div>
+
+                <div class="grid-2-cols">
+                    <div class="glass-panel">
+                        <h3 class="success-text"><i data-lucide="check-circle"></i> Kỹ năng Trùng khớp</h3>
+                        <div id="matcher-matched-skills" class="badges mt-1"></div>
+                    </div>
+                    <div class="glass-panel">
+                        <h3 class="danger-text"><i data-lucide="x-circle"></i> Kỹ năng Còn thiếu</h3>
+                        <div id="matcher-missing-skills" class="badges mt-1"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== SKILL BRIDGE VIEW ==================== -->
+        <div id="view-skill-bridge" class="view hidden">
+            <section class="hero">
+                <h1>Phân tích <span>Khoảng cách Kỹ năng</span></h1>
+                <p>Chọn vị trí công việc mục tiêu và tìm hiểu xem những kỹ năng nào bạn cần rèn luyện thêm.</p>
+            </section>
+
+            <section class="upload-section glass-panel">
+                <form id="uploadForm-skill">
+                    <div class="file-drop-area" id="dropArea-skill-resume">
+                        <i data-lucide="file-text" class="icon-large"></i>
+                        <h3>Tải lên CV</h3>
+                        <input type="file" id="fileInput-skill-resume" accept=".pdf, .docx" required>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label>Vị trí Công việc Mục tiêu:</label>
+                        <select id="role-select" class="custom-select" required>
+                            <option value="">Đang tải danh sách công việc...</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-group">
+                        <label>Gemini API Key (Tùy chọn - để tạo Lộ trình bằng AI):</label>
+                        <input type="password" id="skill-gemini-key" class="custom-input" placeholder="API Key Google AI Studio (Tùy chọn)...">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submitBtn-skill">
+                        <i data-lucide="bridge"></i> Tìm kiếm Kỹ năng Còn thiếu
+                    </button>
+                </form>
+                
+                <div id="loader-skill" class="loader-container hidden">
+                    <div class="spinner"></div>
+                    <p>Đang phân tích khoảng cách kỹ năng...</p>
+                </div>
+            </section>
+
+            <section id="resultsSection-skill" class="results-section hidden">
+                <div class="grid-2-cols">
+                    <div class="glass-panel">
+                        <h3 class="success-text"><i data-lucide="check"></i> Kỹ năng bạn hiện có</h3>
+                        <div id="skill-matched" class="badges mt-1"></div>
+                    </div>
+                    <div class="glass-panel">
+                        <h3 class="warning-text"><i data-lucide="alert-triangle"></i> Kỹ năng cần học thêm</h3>
+                        <div id="skill-missing" class="badges mt-1"></div>
+                    </div>
+                </div>
+
+                <!-- Custom Learning Roadmap Panel -->
+                <div class="glass-panel" id="skill-roadmap-panel" style="margin-top: 2rem; padding: 1.5rem;">
+                    <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;"><i data-lucide="map" style="color: var(--primary);"></i> Lộ trình Học tập Nghề nghiệp Cá nhân hóa</h3>
+                    
+                    <!-- Horizontal Interactive Nodes Diagram -->
+                    <div class="roadmap-nodes-container" id="skill-roadmap-nodes">
+                        <!-- JS will populate 4 horizontal nodes connected by lines -->
+                    </div>
+                    
+                    <!-- Phase Details Card -->
+                    <div class="glass-panel phase-detail-card" id="skill-phase-detail-card" style="margin-top: 1.5rem; background: rgba(0,0,0,0.3); border-color: rgba(255,255,255,0.05); padding: 1.5rem;">
+                        <!-- JS will render active phase title, description, and task checklists -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== ATS TUNEUP VIEW ==================== -->
+        <div id="view-ats-tuneup" class="view hidden">
+            <section class="hero">
+                <h1>Tối ưu hóa <span>ATS</span></h1>
+                <p>Đánh giá mức độ tương thích của CV với hệ thống quản lý tuyển dụng ATS bằng quy tắc heuristic hoặc Gemini AI.</p>
+            </section>
+
+            <section class="upload-section glass-panel">
+                <form id="uploadForm-ats">
+                    <div class="file-drop-area" id="dropArea-ats-resume">
+                        <i data-lucide="robot" class="icon-large"></i>
+                        <h3>Tải lên CV</h3>
+                        <input type="file" id="fileInput-ats-resume" accept=".pdf, .docx" required>
+                    </div>
+
+                    <div class="setting-group">
+                        <label>Phương thức Phân tích</label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="ats_method" value="local" checked>
+                                <div class="card-content">
+                                    <i data-lucide="cpu"></i>
+                                    <span>Quy tắc Heuristic</span>
+                                </div>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="ats_method" value="ai">
+                                <div class="card-content">
+                                    <i data-lucide="sparkles"></i>
+                                    <span>Gemini AI</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-group" id="gemini-key-group" style="display: none;">
+                        <label>Gemini API Key:</label>
+                        <input type="password" id="gemini-key" class="custom-input" placeholder="API Key Google AI Studio...">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submitBtn-ats">
+                        <i data-lucide="search"></i> Phân tích ATS
+                    </button>
+                </form>
+                
+                <div id="loader-ats" class="loader-container hidden">
+                    <div class="spinner"></div>
+                    <p>Đang tối ưu hóa CV của bạn...</p>
+                </div>
+            </section>
+
+            <section id="resultsSection-ats" class="results-section hidden">
+                <!-- Visual Category Scorecard Grid -->
+                <div class="glass-panel text-center" style="margin-bottom: 2rem; padding: 1.5rem;">
+                    <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;"><i data-lucide="award" style="color: var(--primary);"></i> Bảng điểm Chẩn đoán ATS</h3>
+                    <div class="grid-5-cols" id="ats-scorecard-grid">
+                        <!-- JS will populate these columns with metric label, progress bar and value -->
+                    </div>
+                </div>
+                <div id="ats-results-container"></div>
+            </section>
+        </div>
+
+        <!-- ==================== JOB RADAR VIEW ==================== -->
+        <div id="view-job-radar" class="view hidden">
+            <section class="hero">
+                <h1>Dò Tìm <span>Việc làm</span></h1>
+                <p>Nhập thông tin chi tiết và khám phá ngay danh sách công việc phù hợp từ các nền tảng tuyển dụng.</p>
+            </section>
+
+            <section class="upload-section glass-panel">
+                <form id="radar-form">
+                    <div class="grid-2-cols mb-2">
+                        <div class="setting-group">
+                            <label>Vị trí / Vai trò:</label>
+                            <input type="text" id="radar-role" class="custom-input" placeholder="ví dụ: Software Engineer" required>
+                        </div>
+                        <div class="setting-group">
+                            <label>Địa điểm:</label>
+                            <input type="text" id="radar-loc" class="custom-input" placeholder="ví dụ: Hà Nội" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i data-lucide="search"></i> Tạo Liên kết Việc làm</button>
+                </form>
+            </section>
+
+            <section id="resultsSection-radar" class="results-section hidden">
+                <div class="grid-2-cols" id="radar-links-container"></div>
+            </section>
+        </div>
+
+        <!-- ==================== RESUME BUILDER VIEW ==================== -->
+        <div id="view-resume-builder" class="view hidden">
+            <section class="hero">
+                <h1>Tạo CV bằng <span>AI</span></h1>
+                <p>Điền thông tin vào biểu mẫu dưới đây và để AI thiết kế bản CV định dạng DOCX chuẩn ATS.</p>
+            </section>
+
+            <section class="glass-panel" style="margin-bottom: 3rem;">
+                <form id="builder-form">
+                    <div class="setting-group">
+                        <label>Tối ưu bằng AI</label>
+                        <input type="password" id="builder-gemini-key" class="custom-input mb-1" placeholder="Gemini API Key (Tùy chọn)...">
+                        <select id="builder-tone" class="custom-select mt-1">
+                            <option value="Professional">Giọng văn Chuyên nghiệp</option>
+                            <option value="Executive">Giọng văn Quản lý/Điều hành</option>
+                            <option value="Technical">Giọng văn Kỹ thuật</option>
+                        </select>
+                    </div>
+                    <hr style="border-color: var(--panel-border); margin: 2rem 0;">
+
+                    <h3 style="margin-bottom: 1rem;"><i data-lucide="user"></i> Thông tin Cá nhân</h3>
+                    <div class="grid-2-cols">
+                        <input type="text" id="b-name" class="custom-input" placeholder="Họ và tên" required>
+                        <input type="text" id="b-title" class="custom-input" placeholder="Tiêu đề Nghề nghiệp (ví dụ: Lập trình viên)">
+                        <input type="email" id="b-email" class="custom-input" placeholder="Email" required>
+                        <input type="text" id="b-phone" class="custom-input" placeholder="Số điện thoại" required>
+                        <input type="text" id="b-location" class="custom-input" placeholder="Địa chỉ">
+                        <input type="text" id="b-linkedin" class="custom-input" placeholder="Liên kết LinkedIn">
+                    </div>
+
+                    <h3 style="margin: 2rem 0 1rem;"><i data-lucide="file-text"></i> Tóm tắt Chuyên môn</h3>
+                    <textarea id="b-summary" class="custom-textarea" rows="4" placeholder="Mô tả ngắn gọn về sự nghiệp của bạn..."></textarea>
+
+                    <h3 style="margin: 2rem 0 1rem;"><i data-lucide="code"></i> Kỹ năng (Ngăn cách bằng dấu phẩy)</h3>
+                    <textarea id="b-tech" class="custom-textarea mb-1" rows="2" placeholder="Kỹ năng Chuyên môn (ví dụ: Python, Java, SQL)"></textarea>
+                    <textarea id="b-soft" class="custom-textarea mt-1" rows="2" placeholder="Kỹ năng Mềm (ví dụ: Quản lý, Giao tiếp)"></textarea>
+
+                    <h3 style="margin: 2rem 0 1rem;"><i data-lucide="briefcase"></i> Kinh nghiệm Gần đây nhất</h3>
+                    <div class="grid-2-cols mb-1">
+                        <input type="text" id="b-exp-title" class="custom-input" placeholder="Vị trí công việc">
+                        <input type="text" id="b-exp-company" class="custom-input" placeholder="Công ty">
+                        <input type="text" id="b-exp-start" class="custom-input" placeholder="Ngày bắt đầu">
+                        <input type="text" id="b-exp-end" class="custom-input" placeholder="Ngày kết thúc">
+                    </div>
+                    <textarea id="b-exp-desc" class="custom-textarea mt-1" rows="3" placeholder="Nhiệm vụ trong công việc (mỗi dòng một nhiệm vụ)"></textarea>
+
+                    <button type="submit" class="btn btn-primary mt-1" id="builder-submitBtn" style="margin-top:2rem;">
+                        <i data-lucide="download"></i> Tạo & Tải xuống tệp DOCX
+                    </button>
+                </form>
+                <div id="loader-builder" class="loader-container hidden">
+                    <div class="spinner"></div>
+                    <p>AI đang xây dựng CV của bạn (quá trình này có thể mất tới 30 giây)...</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== COVER LETTER VIEW ==================== -->
+        <div id="view-cover-letter" class="view hidden">
+            <section class="hero">
+                <h1>Tạo Thư ứng tuyển bằng <span>AI</span></h1>
+                <p>Tạo thư ứng tuyển chuyên nghiệp được tùy chỉnh theo mô tả công việc cụ thể.</p>
+            </section>
+
+            <section class="upload-section glass-panel">
+                <form id="cover-form">
+                    <div class="setting-group">
+                        <label>Gemini API Key (Tùy chọn - để trống đối với Bản mẫu Ngoại tuyến):</label>
+                        <input type="password" id="cover-gemini-key" class="custom-input" placeholder="API Key Google AI Studio...">
+                    </div>
+
+                    <div class="flex-row">
+                        <div class="file-drop-area flex-1" id="dropArea-cover-resume">
+                            <i data-lucide="file-text" class="icon-large"></i>
+                            <h3>1. Tải lên CV</h3>
+                            <p>Tệp PDF hoặc DOCX</p>
+                            <input type="file" id="fileInput-cover-resume" accept=".pdf, .docx" required>
+                        </div>
+                        <div class="file-drop-area flex-1" id="dropArea-cover-jd">
+                            <i data-lucide="briefcase" class="icon-large"></i>
+                            <h3>2. Tải lên Mô tả Công việc</h3>
+                            <p>Tệp PDF hoặc DOCX (Hoặc dán văn bản phía dưới)</p>
+                            <input type="file" id="fileInput-cover-jd" accept=".pdf, .docx">
+                        </div>
+                    </div>
+                    
+                    <div class="setting-group" style="margin-top:1rem;">
+                        <label>Hoặc dán văn bản Mô tả Công việc:</label>
+                        <textarea id="jd-text-cover" rows="4" class="custom-textarea" placeholder="Dán mô tả công việc tại đây nếu không tải lên tệp..."></textarea>
+                    </div>
+
+                    <div class="setting-group">
+                        <label>Giọng văn Thư ứng tuyển:</label>
+                        <select id="cover-tone" class="custom-select">
+                            <option value="Professional">Chuyên nghiệp</option>
+                            <option value="Conversational">Trò chuyện</option>
+                            <option value="Enthusiastic">Nhiệt huyết</option>
+                            <option value="Confident">Tự tin</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submitBtn-cover">
+                        <i data-lucide="sparkles"></i> Tạo Thư ứng tuyển
+                    </button>
+                </form>
+                
+                <div id="loader-cover" class="loader-container hidden">
+                    <div class="spinner"></div>
+                    <p>AI đang soạn thư ứng tuyển của bạn...</p>
+                </div>
+            </section>
+
+            <section id="resultsSection-cover" class="results-section hidden">
+                <div class="glass-panel">
+                    <h2 style="margin-bottom: 1rem;"><i data-lucide="mail"></i> Thư ứng tuyển được tùy chỉnh</h2>
+                    <textarea id="cover-letter-output" class="custom-textarea" rows="15" readonly style="background: rgba(0,0,0,0.4); line-height: 1.6; font-size: 1rem;"></textarea>
+                    
+                    <div class="flex-row mt-1" style="gap: 1rem; margin-top: 1.5rem;">
+                        <button id="copy-cover-btn" class="btn btn-outline" style="flex: 1;"><i data-lucide="copy"></i> Sao chép</button>
+                        <button id="download-cover-btn" class="btn btn-outline" style="flex: 1;"><i data-lucide="download"></i> Tải xuống TXT</button>
+                        <button id="download-docx-cover-btn" class="btn btn-primary" style="flex: 1; padding: 0.75rem;"><i data-lucide="file-text"></i> Tải xuống DOCX</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== INTERVIEW PREP VIEW ==================== -->
+        <div id="view-interview-prep" class="view hidden">
+            <section class="hero">
+                <h1>Luyện phỏng vấn bằng <span>AI</span></h1>
+                <p>Mô phỏng một buổi phỏng vấn thử thực tế được tùy chỉnh theo công việc mục tiêu của bạn, nhận điểm số và nhận xét cải thiện.</p>
+            </section>
+
+            <!-- Step 1: Setup -->
+            <section id="interview-setup" class="upload-section glass-panel">
+                <form id="interview-setup-form">
+                    <div class="setting-group">
+                        <label>Gemini API Key (Tùy chọn - để trống đối với Bản mẫu Ngoại tuyến):</label>
+                        <input type="password" id="interview-gemini-key" class="custom-input" placeholder="API Key Google AI Studio...">
+                    </div>
+
+                    <div class="flex-row">
+                        <div class="file-drop-area flex-1" id="dropArea-interview-resume">
+                            <i data-lucide="file-text" class="icon-large"></i>
+                            <h3>1. Tải lên CV</h3>
+                            <p>Tệp PDF hoặc DOCX</p>
+                            <input type="file" id="fileInput-interview-resume" accept=".pdf, .docx" required>
+                        </div>
+                        <div class="file-drop-area flex-1" id="dropArea-interview-jd">
+                            <i data-lucide="briefcase" class="icon-large"></i>
+                            <h3>2. Tải lên Mô tả Công việc</h3>
+                            <p>Tệp PDF hoặc DOCX (Hoặc dán văn bản phía dưới)</p>
+                            <input type="file" id="fileInput-interview-jd" accept=".pdf, .docx">
+                        </div>
+                    </div>
+                    
+                    <div class="setting-group" style="margin-top:1rem;">
+                        <label>Hoặc dán văn bản Mô tả Công việc:</label>
+                        <textarea id="jd-text-interview" rows="4" class="custom-textarea" placeholder="Dán mô tả công việc tại đây nếu không tải lên tệp..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submitBtn-interview-start">
+                        <i data-lucide="mic"></i> Bắt đầu Phỏng vấn Thử
+                    </button>
+                </form>
+                
+                <div id="loader-interview-setup" class="loader-container hidden">
+                    <div class="spinner"></div>
+                    <p>Đang tạo câu hỏi phỏng vấn dựa trên hồ sơ của bạn...</p>
+                </div>
+            </section>
+
+            <!-- Step 2: Active Questionnaire -->
+            <section id="interview-active" class="glass-panel hidden" style="margin-bottom: 3rem;">
+                <div class="interview-progress-bar">
+                    <div class="progress-info">
+                        <span id="interview-step-indicator">Câu hỏi 1 / 5</span>
+                    </div>
+                    <div class="progress-track" style="background: rgba(255,255,255,0.05); height: 8px; border-radius: 9999px; overflow: hidden; margin: 0.5rem 0 1.5rem;">
+                        <div id="interview-progress-fill" style="background: linear-gradient(135deg, var(--primary), var(--accent)); width: 20%; height: 100%; transition: width 0.3s ease;"></div>
+                    </div>
+                </div>
+
+                <div class="question-card glass-panel" style="background: rgba(59, 130, 246, 0.05); border-left: 4px solid var(--primary); margin-bottom: 2rem; padding: 1.5rem;">
+                    <h3 id="active-question-text" style="font-size: 1.25rem; font-weight: 700; line-height: 1.5;">Nội dung câu hỏi phỏng vấn?</h3>
+                </div>
+
+                <div class="setting-group">
+                    <label for="interview-user-response">Câu trả lời của bạn:</label>
+                    <textarea id="interview-user-response" class="custom-textarea" rows="6" placeholder="Nhập câu trả lời của bạn tại đây. Nên áp dụng phương pháp STAR: kể về Tình huống (Situation), Nhiệm vụ (Task), Hành động (Action) và Kết quả (Result)..."></textarea>
+                </div>
+
+                <div class="flex-row" style="gap:1rem; margin-top:2rem;">
+                    <button id="interview-prev-btn" class="btn btn-outline" style="flex: 1;"><i data-lucide="chevron-left"></i> Câu hỏi trước</button>
+                    <button id="interview-next-btn" class="btn btn-primary" style="flex: 1; padding: 0.75rem;">Câu hỏi tiếp theo <i data-lucide="chevron-right"></i></button>
+                </div>
+            </section>
+
+            <div id="loader-interview-evaluating" class="loader-container hidden">
+                <div class="spinner"></div>
+                <p>Hoàn thành phỏng vấn thử! AI đang đánh giá các câu trả lời của bạn...</p>
+            </div>
+
+            <!-- Step 3: Results -->
+            <section id="interview-results" class="results-section hidden">
+                <div class="glass-panel text-center mb-2" style="margin-bottom: 2rem;">
+                    <h2>Điểm Phỏng vấn Thử</h2>
+                    <div class="score-circle">
+                        <span id="interview-score">0</span>%
+                    </div>
+                    <p id="interview-feedback-summary" class="mt-1" style="color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto; line-height: 1.5;"></p>
+                </div>
+
+                <h3 style="margin: 2.5rem 0 1.5rem;"><i data-lucide="award"></i> Nhận xét Chi tiết</h3>
+                <div id="interview-breakdown-container"></div>
+
+                <button id="interview-restart-btn" class="btn btn-outline mt-1" style="margin-top: 3rem; width: 100%; padding: 1rem;"><i data-lucide="rotate-ccw"></i> Bắt đầu buổi phỏng vấn mới</button>
+            </section>
+        </div>
+
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

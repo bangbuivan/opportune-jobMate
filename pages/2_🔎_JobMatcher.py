@@ -7,19 +7,19 @@ from recommender.resources import learning_resources
 from preprocessor.spacy_nlp import load_spacy_nlp_model
 
 # Page configuration
-st.set_page_config(page_title="JobMatcher", page_icon="🔎", layout="centered", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="So Khớp Việc làm", page_icon="🔎", layout="centered", initial_sidebar_state="collapsed")
 st.logo("ui/assets/header.png", size="large", icon_image="ui/assets/logo.png")
 
 # Header
 header.render_header()
 
 # Sidebar configuration
-st.sidebar.title("🔎 JobMatcher")
-st.sidebar.markdown("Evaluate your resume's compatibility with a specific job description. Upload both to get a detailed match analysis!")
+st.sidebar.title("🔎 So Khớp Việc làm")
+st.sidebar.markdown("Đánh giá mức độ tương thích của CV với mô tả công việc cụ thể. Tải lên cả hai tài liệu để có phân tích so khớp chi tiết!")
 
 # Main content
-st.title("🔎 JobMatcher")
-st.caption("See how well your resume aligns with a target job description.")
+st.title("🔎 So Khớp Việc làm")
+st.caption("Kiểm tra mức độ phù hợp của CV với mô tả công việc mục tiêu.")
 st.divider()
 
 # Session state setup
@@ -29,32 +29,32 @@ if "jd_text_jobmatcher" not in st.session_state:
     st.session_state.jd_text_jobmatcher = None
 
 # Resume Upload
-st.subheader("Your Resume")
-resume_file = st.file_uploader("Upload your Resume (PDF or DOCX)", type=["pdf", "docx"], key="jobmatcher_resume_uploader")
+st.subheader("CV của bạn")
+resume_file = st.file_uploader("Tải lên CV của bạn (PDF hoặc DOCX)", type=["pdf", "docx"], key="jobmatcher_resume_uploader")
 if resume_file:
-    with st.spinner("Processing resume..."):
+    with st.spinner("Đang xử lý CV..."):
         file_type = resume_file.type
         if file_type == "application/pdf":
             st.session_state.resume_text_jobmatcher = parser.extract_text_from_pdf(resume_file.read())
         elif file_type in ["application/vnd.openxmlformats-officedocument.wordprocessingml.document"]:
             st.session_state.resume_text_jobmatcher = parser.extract_text_from_docx(resume_file.read())
         else:
-            st.error("Unsupported resume file type. Please upload a PDF or DOCX.")
+            st.error("Định dạng tệp CV không hỗ trợ. Vui lòng tải lên tệp PDF hoặc DOCX.")
             st.session_state.resume_text_jobmatcher = None
             st.stop()
     st.markdown("<br>", unsafe_allow_html=True)
-    st.success("Resume processed!")
+    st.success("Đã xử lý CV thành công!")
 st.divider()
 
 # Job Description Input
-st.subheader("Target Job Description")
+st.subheader("Mô tả Công việc Mục tiêu")
 
 # Tabs for JD input method
-tab_labels = ["📂 Upload Job Description", "✍️ Paste Job Description"]
+tab_labels = ["📂 Tải lên Mô tả Công việc", "✍️ Dán Mô tả Công việc"]
 if "jobmatcher_jd_tab_selected" not in st.session_state:
     st.session_state.jobmatcher_jd_tab_selected = 0 # Default to upload tab
 
-selected_tab = st.radio("Choose Input Method for Job Description", tab_labels, index=st.session_state.jobmatcher_jd_tab_selected, horizontal=True, key="jobmatcher_jd_input_method_radio")
+selected_tab = st.radio("Chọn Phương thức Nhập Mô tả Công việc", tab_labels, index=st.session_state.jobmatcher_jd_tab_selected, horizontal=True, key="jobmatcher_jd_input_method_radio")
 
 # Update session state if tab changed
 if selected_tab != tab_labels[st.session_state.jobmatcher_jd_tab_selected]:
@@ -62,26 +62,26 @@ if selected_tab != tab_labels[st.session_state.jobmatcher_jd_tab_selected]:
     st.rerun()
 
 jd_text = None
-if selected_tab == "📂 Upload Job Description":
+if selected_tab == "📂 Tải lên Mô tả Công việc":
     st.write("")
-    jd_file = st.file_uploader("Upload the Job Description (PDF or DOCX)", type=["pdf", "docx"], key="jobmatcher_jd_uploader")
+    jd_file = st.file_uploader("Tải lên Mô tả Công việc (PDF hoặc DOCX)", type=["pdf", "docx"], key="jobmatcher_jd_uploader")
     if jd_file:
-        with st.spinner("Processing job description..."):
+        with st.spinner("Đang xử lý mô tả công việc..."):
             jd_type = jd_file.type
             if jd_type == "application/pdf":
                 jd_text = parser.extract_text_from_pdf(jd_file.read())
             elif jd_type in ["application/vnd.openxmlformats-officedocument.wordprocessingml.document"]:
                 jd_text = parser.extract_text_from_docx(jd_file.read())
             else:
-                st.error("Unsupported job description file type. Please upload a PDF or DOCX.")
+                st.error("Định dạng tệp mô tả công việc không hỗ trợ. Vui lòng tải lên tệp PDF hoặc DOCX.")
                 jd_text = None
                 st.stop()
         st.markdown("<br>", unsafe_allow_html=True)
-        st.success("Job Description processed!")
+        st.success("Đã xử lý Mô tả Công việc thành công!")
 
-elif selected_tab == "✍️ Paste Job Description":
+elif selected_tab == "✍️ Dán Mô tả Công việc":
     st.write("")
-    pasted_text = st.text_area("Paste the Job Description Here:", height=300, key="jobmatcher_jd_pasted_text")
+    pasted_text = st.text_area("Dán Mô tả Công việc tại đây:", height=300, key="jobmatcher_jd_pasted_text")
     if pasted_text:
         jd_text = pasted_text
 
@@ -89,9 +89,9 @@ elif selected_tab == "✍️ Paste Job Description":
 # Main Analysis Logic
 if st.session_state.resume_text_jobmatcher and jd_text:
     st.divider()
-    st.subheader("Match Analysis Results")
+    st.subheader("Kết quả Phân tích So khớp")
 
-    with st.spinner("Performing match analysis..."):
+    with st.spinner("Đang thực hiện phân tích so khớp..."):
         nlp = load_spacy_nlp_model()
 
         resume_doc = nlp(st.session_state.resume_text_jobmatcher)
@@ -140,14 +140,14 @@ if st.session_state.resume_text_jobmatcher and jd_text:
         )
 
         # Display Results
-        st.header("📊 Job Compatibility Score")
+        st.header("📊 Điểm Tương thích Công việc")
         st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown(f"### Overall Compatibility: <span style='font-weight:normal'>{final_score}%</span>", unsafe_allow_html=True)
+        st.markdown(f"### Độ Tương thích Tổng quan: <span style='font-weight:normal'>{final_score}%</span>", unsafe_allow_html=True)
         st.progress(final_score / 100)
         st.markdown("<br>", unsafe_allow_html=True)
 
-        st.markdown(f"### 🧱 Hard Skills Match: <span style='font-weight:normal'>{round(hard_pct)}% of 90 → {round(hard_score_contribution)} points</span>", unsafe_allow_html=True)
-        st.markdown(f"### 🎭 Soft Skills Match: <span style='font-weight:normal'>{round(soft_pct)}% of 10 → {round(soft_score_contribution)} points</span>", unsafe_allow_html=True)
+        st.markdown(f"### 🧱 Khớp Kỹ năng Chuyên môn: <span style='font-weight:normal'>{round(hard_pct)}% của 90 → {round(hard_score_contribution)} điểm</span>", unsafe_allow_html=True)
+        st.markdown(f"### 🎭 Khớp Kỹ năng Mềm: <span style='font-weight:normal'>{round(soft_pct)}% của 10 → {round(soft_score_contribution)} điểm</span>", unsafe_allow_html=True)
         st.write("")
         st.divider()
 
@@ -155,55 +155,55 @@ if st.session_state.resume_text_jobmatcher and jd_text:
             st.subheader(label)
             st.markdown("<br>", unsafe_allow_html=True)
             if core_skills:
-                st.markdown(f"##### 🔐 Core Skills: " + " ".join(f":{badge_color}-badge[{s.title()}]" for s in core_skills))
+                st.markdown(f"##### 🔐 Kỹ năng Cốt lõi: " + " ".join(f":{badge_color}-badge[{s.title()}]" for s in core_skills))
             if important_skills:
-                st.markdown(f"##### 💡 Important Skills: " + " ".join(f":{badge_color}-badge[{s.title()}]" for s in important_skills))
+                st.markdown(f"##### 💡 Kỹ năng Quan trọng: " + " ".join(f":{badge_color}-badge[{s.title()}]" for s in important_skills))
             if optional_skills:
-                st.markdown(f"##### 🧩 Nice-to-Have Skills: " + " ".join(f":{badge_color}-badge[{s.title()}]" for s in optional_skills))
+                st.markdown(f"##### 🧩 Kỹ năng Bổ trợ: " + " ".join(f":{badge_color}-badge[{s.title()}]" for s in optional_skills))
             if not (core_skills or important_skills or optional_skills):
-                st.info(f"No {label.lower().replace('skills', '')} hard skills.")
+                st.info(f"Không phát hiện kỹ năng chuyên môn tương ứng.")
 
         # Matched Skills
-        st.subheader("✅ Matched Skills")
+        st.subheader("✅ Kỹ năng Trùng khớp")
         st.markdown("<br>", unsafe_allow_html=True)
-        show_skills_section("Hard Skills", "green", matched_hard_core, matched_hard_imp, matched_hard_opt)
+        show_skills_section("Kỹ năng Chuyên môn", "green", matched_hard_core, matched_hard_imp, matched_hard_opt)
         if matched_soft_skills:
-            st.markdown(f"##### Soft Skills: " + " ".join(f":green-badge[{s.title()}]" for s in sorted(matched_soft_skills)))
+            st.markdown(f"##### Kỹ năng Mềm: " + " ".join(f":green-badge[{s.title()}]" for s in sorted(matched_soft_skills)))
         elif not matched_soft_skills:
             st.write("")
-            st.info("No matched soft skills.")
+            st.info("Không phát hiện kỹ năng mềm trùng khớp nào.")
         st.markdown("<br>", unsafe_allow_html=True)
         st.divider()
 
         # Missing Skills
-        st.subheader("❌ Missing Skills")
+        st.subheader("❌ Kỹ năng Còn thiếu")
         st.markdown("<br>", unsafe_allow_html=True)
-        show_skills_section("Hard Skills", "red", missing_hard_core, missing_hard_imp, missing_hard_opt)
+        show_skills_section("Kỹ năng Chuyên môn", "red", missing_hard_core, missing_hard_imp, missing_hard_opt)
         if missing_soft_skills:
-            st.markdown(f"##### Soft Skills: " + " ".join(f":red-badge[{s.title()}]" for s in sorted(missing_soft_skills)))
+            st.markdown(f"##### Kỹ năng Mềm: " + " ".join(f":red-badge[{s.title()}]" for s in sorted(missing_soft_skills)))
         elif not missing_soft_skills:
-            st.success("No missing soft skills!")
+            st.success("Bạn đã có đầy đủ kỹ năng mềm!")
         st.markdown("<br>", unsafe_allow_html=True)
         st.divider()
 
         # Overall recommendation based on score
         if final_score >= 80:
-            st.success("✅ Excellent Match! Your resume is highly compatible with this job description. Focus on interview preparation!")
+            st.success("✅ Độ Tương thích Xuất sắc! CV của bạn cực kỳ phù hợp với mô tả công việc này. Hãy tập trung chuẩn bị luyện phỏng vấn!")
         elif final_score >= 65:
-            st.info("✨ Good Match! You're a solid fit. Review the missing skills and consider tailoring your resume further.")
+            st.info("✨ Độ Tương thích Tốt! Bạn rất phù hợp với vị trí này. Hãy xem lại các kỹ năng còn thiếu và cân nhắc điều chỉnh CV chi tiết hơn.")
         else:
-            st.warning("⚠️ Needs Improvement. There's a significant skill gap. Focus on developing the missing skills or tailoring your resume more intensely.")
+            st.warning("⚠️ Cần Cải thiện. Có một khoảng cách kỹ năng đáng kể. Hãy tập trung học tập các kỹ năng còn thiếu hoặc tối ưu hóa lại CV của bạn.")
 
         # Learning resources for missing skills
         st.divider()
-        st.header("📚 Recommended Resources for Missing Skills")
+        st.header("📚 Tài liệu Gợi ý cho Kỹ năng Còn thiếu")
         st.write("")
         all_missing_skills = list(missing_hard_skills) + list(missing_soft_skills)
         if all_missing_skills:
             learning_resources(all_missing_skills)
         else:
-            st.info("You've got all the essential skills covered for this role!")
+            st.info("Bạn đã có đầy đủ tất cả các kỹ năng thiết yếu cho vai trò này!")
 
 
 # Footer
-footer.render_footer("🔎 JobMatcher")
+footer.render_footer("🔎 So Khớp Việc làm")

@@ -5,38 +5,38 @@ import urllib
 import urllib.parse
 
 #Page configuration
-st.set_page_config(page_title="JobRadar", page_icon="📡", layout="centered", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Dò Tìm Việc làm", page_icon="📡", layout="centered", initial_sidebar_state="collapsed")
 st.logo("ui/assets/header.png", size = "large", icon_image= "ui/assets/logo.png")
 
 # Header
 header.render_header()
 
 # Sidebar configuration
-st.sidebar.title("📡 JobRadar")
-st.sidebar.markdown("Your one-stop job search assistant. Enter your details and explore curated job listings from top platforms.")
+st.sidebar.title("📡 Dò Tìm Việc làm")
+st.sidebar.markdown("Trợ lý tìm kiếm việc làm toàn diện của bạn. Nhập thông tin chi tiết và khám phá danh sách công việc được tuyển chọn từ các nền tảng hàng đầu.")
 
 # Main content
-st.title("📡 JobRadar")
-st.caption("Discover job opportunities tailored to your role, location, and experience — all from a single dashboard.")
+st.title("📡 Dò Tìm Việc làm")
+st.caption("Khám phá các cơ hội việc làm phù hợp với vai trò, địa điểm và kinh nghiệm của bạn — tất cả từ một bảng điều khiển duy nhất.")
 st.divider()
 
 cols = st.columns([1, 1], vertical_alignment='center', gap='small')
 with cols[0]:
-    job = st.text_input("Position / Role", placeholder="eg. Software Engineer")
-    location = st.text_input("Preferred Location", value="India", placeholder="eg. Bangalore")
+    job = st.text_input("Vị trí / Vai trò", placeholder="ví dụ: Software Engineer")
+    location = st.text_input("Địa điểm mong muốn", value="Vietnam", placeholder="ví dụ: Hà Nội")
 with cols[1]:
-    experience = st.selectbox("Years of Experience", ["Fresher", "0-1", "1-3", "3-5", "5+"])
-    job_type = st.selectbox("Job Type", ["Any", "Full-time", "Part-time", "Remote", "Hybrid"])
+    experience = st.selectbox("Số năm kinh nghiệm", ["Mới tốt nghiệp", "0-1", "1-3", "3-5", "5+"])
+    job_type = st.selectbox("Loại công việc", ["Tất cả", "Toàn thời gian", "Bán thời gian", "Làm việc từ xa", "Làm việc linh hoạt (Hybrid)"])
 st.write("")
 
-if st.button("🔍 Search Jobs", use_container_width=True):
+if st.button("🔍 Tìm kiếm Việc làm", use_container_width=True):
     st.divider()
     job_enc = urllib.parse.quote_plus(job)              # URL-safe job role
     loc_enc = urllib.parse.quote_plus(location)         # URL-safe location
     job_dash = job.lower().replace(" ", "-")            # For slug-based URLs
     loc_dash = location.lower().replace(" ", "-")       # For slug-based URLs
 
-    st.success("Explore jobs from the platforms below:")
+    st.success("Khám phá cơ hội việc làm từ các nền tảng dưới đây:")
 
     col1, col2 = st.columns(2, gap='small')
 
@@ -73,4 +73,4 @@ if st.button("🔍 Search Jobs", use_container_width=True):
         st.link_button("🌟 Shine", f"https://www.shine.com/job-search/{job_dash}-jobs-in-{loc_dash}", use_container_width=True)
 
 # Footer
-footer.render_footer("📡 JobRadar")
+footer.render_footer("📡 Dò Tìm Việc làm")

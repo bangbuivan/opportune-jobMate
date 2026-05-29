@@ -1,11 +1,11 @@
 
-![Opportune: JobMate](ui/assets/header.png)
+![CareerForge AI](ui/assets/header.png)
 ---
-A modular, intelligent resume analysis and enhancement platform.
+A modular, intelligent resume engineering, career intelligence, and interview simulation suite.
 ---
 
 ## Overview  
-Opportune: JobMate is a Streamlit-based suite for job seekers. It helps users analyze their resumes, match to job descriptions, enhance resume content, and prepare application-ready documents using NLP, AI, and resume intelligence. It supports both early-career professionals and experienced users seeking tailored job preparation tools.
+CareerForge AI is a Streamlit and FastAPI-powered suite designed for modern job seekers. It helps users analyze resumes for ATS optimization, compare profile skills to target job descriptions, draft tailored cover letters, and practice situational mock interviews. Powered by spaCy NLP and Google Gemini AI, it delivers actionable insights to optimize career placement.
 
 ---
 
@@ -124,5 +124,4 @@ streamlit run Home.py
 ---
 
 ## License  
-MIT License © 2024  
-Author: Amartya Anayachala
+MIT License © 2026 CareerForge AI Team. All rights reserved.

@@ -1,0 +1,502 @@
+:root {
+    --bg-color: #090d16;
+    --panel-bg: rgba(13, 27, 42, 0.75);
+    --panel-border: rgba(255, 255, 255, 0.08);
+    --primary: #0d9488;
+    --primary-hover: #0f766e;
+    --accent: #d97706;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; position: relative; }
+
+/* Utilities */
+.hidden { display: none !important; }
+.flex-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+.flex-1 { flex: 1; min-width: 200px; }
+.grid-2-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.mt-1 { margin-top: 1rem; }
+.text-center { text-align: center; }
+.success-text { color: var(--success); }
+.warning-text { color: var(--warning); }
+.danger-text { color: var(--danger); }
+
+/* Background */
+.background-blobs { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.5; animation: float 20s infinite ease-in-out alternate; }
+.blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, var(--primary) 0%, transparent 70%); }
+.blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, var(--accent) 0%, transparent 70%); animation-delay: -10s; }
+@keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(5%, 5%) scale(1.1); } }
+
+/* Glassmorphism Utilities */
+.glass-panel { background: var(--panel-bg); backdrop-filter: blur(16px); border: 1px solid var(--panel-border); border-radius: 16px; padding: 2rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+
+/* Layout & Header */
+.container { max-width: 1000px; margin: 0 auto; padding: 2rem 1rem; }
+header.header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--panel-border); position: sticky; top: 0; z-index: 100; flex-wrap: wrap; gap: 1rem; }
+.logo { display: flex; align-items: center; gap: 0.75rem; font-size: 1.5rem; font-weight: 800; color: var(--text-main); }
+.logo i { color: var(--primary); }
+nav { display: flex; gap: 1.5rem; overflow-x: auto; }
+nav a { display: flex; align-items: center; gap: 0.5rem; color: var(--text-muted); text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s; white-space: nowrap; }
+nav a.active, nav a:hover { color: var(--text-main); background: rgba(255,255,255,0.1); }
+
+/* Views */
+.view { animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Hero Section */
+.hero { text-align: center; margin: 3rem 0; }
+.hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; }
+.hero h1 span { background: linear-gradient(to right, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { color: var(--text-muted); font-size: 1.125rem; max-width: 600px; margin: 0 auto; }
+
+/* Upload Section */
+.upload-section { margin-bottom: 3rem; }
+.file-drop-area { border: 2px dashed var(--panel-border); border-radius: 12px; padding: 3rem 2rem; text-align: center; margin-bottom: 1.5rem; transition: all 0.3s ease; cursor: pointer; position: relative; }
+.file-drop-area.dragover { border-color: var(--primary); background: rgba(59, 130, 246, 0.1); }
+.file-drop-area .icon-large { width: 48px; height: 48px; color: var(--text-muted); margin-bottom: 1rem; }
+.file-drop-area:hover .icon-large { color: var(--primary); }
+.file-drop-area input[type="file"] { display: none; }
+.file-drop-area input[type="file"]::after { content: "Browse"; position: absolute; inset:0; z-index:10; }
+
+/* Inputs */
+.custom-input, .custom-select, .custom-textarea { width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid var(--panel-border); background: rgba(0,0,0,0.2); color: white; font-size: 1rem; outline: none; transition: border 0.3s; }
+.custom-input:focus, .custom-select:focus, .custom-textarea:focus { border-color: var(--primary); }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; border: none; font-size: 1rem; }
+.btn-outline { background: transparent; border: 1px solid var(--panel-border); color: var(--text-main); }
+.btn-outline:hover { background: rgba(255, 255, 255, 0.05); }
+.btn-primary { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; width: 100%; padding: 1rem; font-size: 1.125rem; box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* Settings Form */
+.settings-area { margin-bottom: 2rem; }
+.setting-group { margin-bottom: 1.5rem; }
+.setting-group > label { display: block; margin-bottom: 1rem; font-weight: 600; color: var(--text-muted); }
+.radio-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.radio-card input { display: none; }
+.radio-card .card-content { display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--panel-border); border-radius: 8px; cursor: pointer; transition: all 0.2s ease; }
+.radio-card input:checked + .card-content { background: rgba(59, 130, 246, 0.1); border-color: var(--primary); }
+.radio-card input:checked + .card-content i { color: var(--primary); }
+input[type="range"] { width: 100%; accent-color: var(--primary); }
+
+/* Loader */
+.loader-container { text-align: center; padding: 2rem; }
+.spinner { width: 50px; height: 50px; border: 4px solid rgba(255, 255, 255, 0.1); border-left-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Profile Grid */
+.profile-panel { margin-bottom: 3rem; }
+.profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
+.profile-item { display: flex; flex-direction: column; gap: 0.25rem; }
+.profile-item .label { color: var(--text-muted); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.profile-item .value { font-weight: 600; font-size: 1.125rem; }
+
+/* Badges */
+.badges { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.badge { background: rgba(59, 130, 246, 0.2); color: #60a5fa; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; }
+.badge.danger { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+.badge.success { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+.badge.warning { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+
+/* Jobs List */
+.jobs-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.jobs-list { display: flex; flex-direction: column; gap: 1.5rem; }
+.job-card { background: var(--panel-bg); border: 1px solid var(--panel-border); border-left: 4px solid var(--primary); border-radius: 12px; padding: 1.5rem; transition: transform 0.2s ease; }
+.job-card:hover { transform: translateX(4px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3); }
+.job-header { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+.job-title { font-size: 1.25rem; font-weight: 800; color: white; }
+.job-company { color: var(--text-muted); font-weight: 600; margin-top: 0.25rem; }
+.job-meta { display: flex; gap: 1rem; margin-bottom: 1rem; }
+.meta-item { display: flex; align-items: center; gap: 0.25rem; color: var(--text-muted); font-size: 0.875rem; }
+.job-description { color: #cbd5e1; margin-bottom: 1.5rem; line-height: 1.6; }
+.job-skills { display: flex; flex-direction: column; gap: 0.5rem; }
+
+/* Score Circle */
+.score-circle { width: 120px; height: 120px; border-radius: 50%; border: 8px solid var(--primary); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 800; margin: 1.5rem auto; color: white; background: rgba(59, 130, 246, 0.1); }
+.score-breakdown { display: flex; justify-content: center; gap: 2rem; color: var(--text-muted); }
+
+/* ATS Results */
+.ats-step { margin-bottom: 1.5rem; border-bottom: 1px solid var(--panel-border); padding-bottom: 1rem; }
+.ats-step h3 { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; color: var(--primary); }
+.ats-finding { margin-bottom: 0.5rem; padding: 0.75rem; border-radius: 8px; display: flex; align-items: center; gap: 0.75rem; }
+.ats-finding.success { background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--success); }
+.ats-finding.warning { background: rgba(245, 158, 11, 0.1); border-left: 4px solid var(--warning); }
+.ats-finding.danger { background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--danger); }
+.ats-finding.info { background: rgba(255, 255, 255, 0.05); border-left: 4px solid var(--primary); }
+
+/* Dashboard Styles */
+.grid-3-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+.feature-nav-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; border: 1px solid var(--panel-border); }
+.feature-nav-card:hover { transform: translateY(-5px) scale(1.02); border-color: var(--primary); box-shadow: 0 12px 30px rgba(13, 148, 136, 0.2); }
+.feature-nav-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+
+/* ATS Scorecard Grid */
+.grid-5-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+.scorecard-item {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    padding: 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.scorecard-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.1);
+}
+.scorecard-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+}
+.scorecard-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 0.75rem;
+}
+.mini-progress-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 9999px;
+    width: 100%;
+    height: 6px;
+    overflow: hidden;
+}
+.mini-progress-fill {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    height: 100%;
+    border-radius: 9999px;
+    width: 0%;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Roadmap Mind-Map Overhaul Styling */
+.roadmap-mindmap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    padding: 2rem 0;
+}
+
+/* Root/Target Role Node */
+.roadmap-root-node {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 800;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    box-shadow: 0 0 20px rgba(13, 148, 136, 0.4);
+    z-index: 10;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.roadmap-root-node::after {
+    content: '';
+    position: absolute;
+    bottom: -3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 3rem;
+    border-left: 2px dotted var(--primary); /* Dotted trunk line downwards */
+    z-index: 1;
+}
+
+/* Horizontal line bar connecting the 4 branches */
+.roadmap-branches-wrapper {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    position: relative;
+    padding-top: 1.5rem;
+}
+
+.roadmap-branches-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 12.5%;
+    right: 12.5%;
+    height: 2px;
+    border-top: 2px dotted var(--primary); /* Horizontal connecting line */
+    z-index: 1;
+}
+
+/* Individual Branch (Domain) */
+.roadmap-branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 23%;
+    position: relative;
+}
+
+/* Dotted line from horizontal bar down to the Domain header */
+.roadmap-branch::before {
+    content: '';
+    position: absolute;
+    top: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 1.5rem;
+    border-left: 2px dotted var(--primary);
+    z-index: 1;
+}
+
+/* Domain Header Node - Yellow styling like image */
+.branch-header-node {
+    background-color: #fef08a; /* Yellow-200 */
+    border: 2px solid #ca8a04; /* Yellow-600 */
+    color: #854d0e; /* Yellow-800 */
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 5;
+    width: 100%;
+    min-height: 4.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.branch-header-node .domain-meta {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #b45309; /* Amber-700 */
+    margin-bottom: 0.2rem;
+}
+
+/* Line going down from domain node to children tasks */
+.branch-header-node::after {
+    content: '';
+    position: absolute;
+    bottom: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 1.5rem;
+    border-left: 2px dotted #3b82f6; /* Blue dotted line from image */
+    z-index: 1;
+}
+
+/* Task Nodes container */
+.branch-tasks-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    position: relative;
+}
+
+/* Vertical dotted line running behind tasks */
+.branch-tasks-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    border-left: 2px dotted #3b82f6; /* Blue dotted connector */
+    z-index: 1;
+}
+
+/* Individual Task Node Card - Yellow/gold boxes */
+.task-leaf-node {
+    background-color: #fef08a; /* Yellow-200 */
+    border: 2px solid #ca8a04; /* Yellow-600 */
+    color: #854d0e; /* Yellow-800 */
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 95%;
+    font-size: 0.8rem;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 5;
+    position: relative;
+}
+
+/* Dotted horizontal connector to task leaf */
+.task-leaf-node::before {
+    content: '';
+    position: absolute;
+    left: -0.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.25rem;
+    border-top: 2px dotted #3b82f6;
+    z-index: 1;
+}
+
+.task-leaf-node:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(202, 138, 4, 0.3);
+}
+
+.task-leaf-node.active {
+    background-color: #fef9c3; /* Yellow-100 */
+    border-color: var(--primary);
+    box-shadow: 0 0 12px rgba(13, 148, 136, 0.4);
+}
+
+/* Status Icon badge (checkmark or placeholder) */
+.node-status-badge {
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+/* Task node completed - matches checkmarks in image */
+.task-leaf-completed .node-status-badge {
+    background: #a855f7; /* Purple checkmark badge from image */
+    color: white;
+}
+
+/* Outline for todo nodes */
+.task-leaf-todo .node-status-badge {
+    border: 1px solid #854d0e;
+    background: rgba(0,0,0,0.05);
+    color: transparent;
+}
+
+/* Task titles */
+.task-leaf-title {
+    flex: 1;
+    text-align: left;
+    line-height: 1.3;
+}
+
+/* Responsive tree layout adjustments */
+@media (max-width: 991px) {
+    .roadmap-branches-wrapper {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+        padding-top: 0;
+    }
+    .roadmap-branches-wrapper::before {
+        display: none;
+    }
+    .roadmap-branch {
+        width: 80%;
+    }
+    .roadmap-branch::before {
+        display: none;
+    }
+}
+
+/* Phase Details Area Styling */
+.phase-detail-card {
+    transition: all 0.3s ease;
+}
+.phase-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+.phase-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 0.75rem;
+}
+.phase-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+.phase-checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.phase-checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    cursor: pointer;
+    user-select: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+.phase-checklist-item:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+.phase-checklist-item input[type="checkbox"] {
+    margin-top: 0.25rem;
+    accent-color: var(--primary);
+    cursor: pointer;
+    width: 1rem;
+    height: 1rem;
+}
+.phase-checklist-item label {
+    cursor: pointer;
+    line-height: 1.4;
+}
+.phase-checklist-item.checked {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
