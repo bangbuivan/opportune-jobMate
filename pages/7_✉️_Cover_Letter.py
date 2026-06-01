@@ -23,7 +23,7 @@ st.divider()
 # Inputs
 uploaded_resume = st.file_uploader("📄 Tải lên CV của bạn (PDF hoặc DOCX)", type=["pdf", "docx"], key="cl_resume")
 uploaded_jd = st.file_uploader("💼 Tải lên Mô tả Công việc (Tùy chọn PDF hoặc DOCX)", type=["pdf", "docx"], key="cl_jd")
-jd_text = st.text_area("✍️ Hoặc dán văn bản Mô tả Công việc", height=200, placeholder="Dán các yêu cầu và nhiệm vụ của công việc mục tiêu tại đây...")
+jd_text = st.text_area("✍️ Hoặc dán văn bản Mô tả Công việc", height=200, placeholder="Dán các yêu cầu và nhiệm vụ của công việc mục tiêu tại đây...", key="cl_jd_text")
 
 tone = st.selectbox("🎭 Chọn Giọng văn Thư ứng tuyển", ["Chuyên nghiệp", "Trò chuyện", "Nhiệt huyết", "Tự tin"])
 

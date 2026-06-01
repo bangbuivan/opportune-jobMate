@@ -334,38 +334,8 @@ market_roles_data = {
     }
 }
 
-mock_jobs_feed = {
-    'Frontend Developer': [
-        {'title': 'Senior Frontend Engineer (React/Next.js)', 'company': 'VNG Corporation', 'location': 'TP. Hồ Chí Minh', 'salary': '1,800 - 2,500 USD', 'skills': 'React, Next.js, TypeScript'},
-        {'title': 'Frontend Developer (VueJS/Nuxt)', 'company': 'FPT Software', 'location': 'Hà Nội', 'salary': '1,200 - 1,800 USD', 'skills': 'Vue.js, Nuxt.js, CSS'},
-        {'title': 'React Native / Frontend Developer', 'company': 'MoMo E-Wallet', 'location': 'TP. Hồ Chí Minh', 'salary': '1,500 - 2,200 USD', 'skills': 'React Native, Redux, JavaScript'}
-    ],
-    'Backend Developer': [
-        {'title': 'Backend Developer (Python / FastAPI)', 'company': 'NAB Innovation Centre', 'location': 'TP. Hồ Chí Minh (Hybrid)', 'salary': '1,600 - 2,400 USD', 'skills': 'Python, FastAPI, SQL'},
-        {'title': 'Golang Backend Engineer', 'company': 'Kredivo Vietnam', 'location': 'Hà Nội / Remote', 'salary': '1,800 - 2,600 USD', 'skills': 'Go, Redis, Postgres'},
-        {'title': 'Senior Java Web Engineer', 'company': 'Techcombank', 'location': 'Hà Nội', 'salary': '2,000 - 3,200 USD', 'skills': 'Java, Spring Boot, Microservices'}
-    ],
-    'Fullstack Developer': [
-        {'title': 'Fullstack Developer (NodeJS & ReactJS)', 'company': 'OneMount Group', 'location': 'Hà Nội', 'salary': '1,400 - 2,200 USD', 'skills': 'Node.js, React, MongoDB'},
-        {'title': 'Senior Fullstack Software Engineer', 'company': 'VNG Corporation', 'location': 'TP. Hồ Chí Minh', 'salary': '2,200 - 3,500 USD', 'skills': 'React, Python, AWS'},
-        {'title': 'Full Stack Developer (.NET & React)', 'company': 'FPT Software', 'location': 'Đà Nẵng', 'salary': '1,200 - 1,900 USD', 'skills': '.NET Core, React, SQL Server'}
-    ],
-    'Mobile Developer': [
-        {'title': 'Senior iOS Developer (Swift)', 'company': 'MoMo E-Wallet', 'location': 'TP. Hồ Chí Minh', 'salary': '1,800 - 2,500 USD', 'skills': 'Swift, MVVM, Unit Testing'},
-        {'title': 'Flutter Mobile Engineer', 'company': 'Giao Hàng Tiết Kiệm', 'location': 'Hà Nội', 'salary': '1,000 - 1,700 USD', 'skills': 'Flutter, Dart, Bloc'},
-        {'title': 'Android Developer (Kotlin)', 'company': 'Zalo Group', 'location': 'TP. Hồ Chí Minh', 'salary': '1,500 - 2,300 USD', 'skills': 'Kotlin, Jetpack Compose'}
-    ],
-    'DevOps Engineer': [
-        {'title': 'Senior DevOps Engineer (Kubernetes)', 'company': 'NAB Innovation Centre', 'location': 'TP. Hồ Chí Minh', 'salary': '2,500 - 3,800 USD', 'skills': 'Kubernetes, AWS, Terraform'},
-        {'title': 'DevOps / Cloud Infrastructure Engineer', 'company': 'FPT Cloud', 'location': 'Hà Nội', 'salary': '1,600 - 2,500 USD', 'skills': 'Docker, CI/CD, Ansible'},
-        {'title': 'DevSecOps Specialist', 'company': 'Masan Group', 'location': 'TP. Hồ Chí Minh', 'salary': '2,200 - 3,200 USD', 'skills': 'Security, Docker, Jenkins'}
-    ],
-    'Data Specialist': [
-        {'title': 'Data Scientist / ML Engineer', 'company': 'VNG Corporation', 'location': 'TP. Hồ Chí Minh', 'salary': '2,000 - 3,000 USD', 'skills': 'Python, PyTorch, SQL'},
-        {'title': 'Data Analyst (SQL & PowerBI)', 'company': 'Techcombank', 'location': 'Hà Nội', 'salary': '1,000 - 1,600 USD', 'skills': 'SQL, PowerBI, Python'},
-        {'title': 'Senior Data Engineer (Spark/Kafka)', 'company': 'MoMo E-Wallet', 'location': 'TP. Hồ Chí Minh', 'salary': '2,200 - 3,500 USD', 'skills': 'PySpark, Kafka, Airflow'}
-    ]
-}
+from data.mock_jobs_detail import mock_jobs_feed
+
 
 career_boosters = {
     'Frontend Developer': [
@@ -463,18 +433,27 @@ with col_boost:
 with col_jobs:
     st.markdown("##### 💼 Tin tuyển dụng Nổi bật (Hot Jobs)")
     jobs = mock_jobs_feed[selected_role]
-    for job in jobs:
+    import urllib.parse
+    for idx, job in enumerate(jobs):
+        role_enc = urllib.parse.quote(selected_role)
         job_html = f"""
-        <div class="job-feed-card">
-            <div style="font-weight:700; color:#ffffff; font-size:0.88rem; margin-bottom:0.15rem;">{job['title']}</div>
-            <div style="font-size:0.8rem; color:#3b82f6; font-weight:600; margin-bottom:0.35rem;">🏢 {job['company']}</div>
-            <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; color:#94a3b8;">
-                <span>📍 {job['location']}</span>
-                <span style="color:#10b981; font-weight:700;">💵 {job['salary']}</span>
+        <a href="/Job_Detail?role={role_enc}&idx={idx}" target="_self" style="text-decoration: none; color: inherit;">
+            <div class="job-feed-card" style="cursor: pointer; margin-bottom: 0.3rem;">
+                <div style="font-weight:700; color:#ffffff; font-size:0.88rem; margin-bottom:0.15rem;">{job['title']}</div>
+                <div style="font-size:0.8rem; color:#3b82f6; font-weight:600; margin-bottom:0.35rem;">🏢 {job['company']}</div>
+                <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; color:#94a3b8;">
+                    <span>📍 {job['location']}</span>
+                    <span style="color:#10b981; font-weight:700;">💵 {job['salary']}</span>
+                </div>
             </div>
-        </div>
+        </a>
         """
         st.markdown(job_html, unsafe_allow_html=True)
+        if st.button("👁️ Xem chi tiết", key=f"btn_job_det_{role_enc}_{idx}", use_container_width=True):
+            st.session_state.selected_job = job
+            st.session_state.selected_job_role = selected_role
+            st.switch_page("pages/10_💼_Job_Detail.py")
+        st.write("")
 
 st.write("")
 

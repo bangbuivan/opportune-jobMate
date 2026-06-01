@@ -55,7 +55,7 @@ if st.session_state.ip_step == "setup":
     
     uploaded_resume = st.file_uploader("📄 Tải lên CV của bạn (PDF hoặc DOCX)", type=["pdf", "docx"], key="ip_setup_resume")
     uploaded_jd = st.file_uploader("💼 Tải lên Mô tả Công việc (Tùy chọn PDF hoặc DOCX)", type=["pdf", "docx"], key="ip_setup_jd")
-    jd_text = st.text_area("✍️ Hoặc dán văn bản Mô tả Công việc", height=200, placeholder="Dán mô tả công việc tại đây...")
+    jd_text = st.text_area("✍️ Hoặc dán văn bản Mô tả Công việc", height=200, placeholder="Dán mô tả công việc tại đây...", key="ip_jd_text_input")
     
     start_btn = st.button("🚀 Bắt đầu Phỏng vấn Thử", use_container_width=True)
     
