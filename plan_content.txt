@@ -1,0 +1,255 @@
+         KẾ HOẠCH CHI TIẾT VÀ PHÂN CÔNG NHIỆM VỤ DỰ ÁN CAREERFORGE AI
+1. Tổng quan dự án
+1.1 Thông tin chung
+
+
+1.2 Thành viên
+
+
+
+
+
+1.3 Mục tiêu dự án
+CareerForge AI là bộ công cụ hỗ trợ nghề nghiệp tích hợp AI, được xây dựng trên nền tảng Streamlit và FastAPI, cho phép người dùng:
+Phân tích và tối ưu hóa CV theo chuẩn ATS (13 tiêu chí kiểm tra) kết hợp đánh giá AI từ Gemini
+So khớp CV với mô tả công việc (JD) để tính điểm tương thích, xác định kỹ năng còn thiếu và đề xuất tài nguyên học tập
+Gợi ý vị trí công việc phù hợp nhất dựa trên phân tích kỹ năng và so khớp ngữ nghĩa FAISS (CareerMatch)
+Tạo CV chuyên nghiệp với biểu mẫu động, nhiều theme (Modern, Minimal, Harvard, Standard), và tính năng nâng cấp nội dung bằng Gemini AI
+Luyện phỏng vấn thử (Mock Interview) với câu hỏi tùy chỉnh theo CV và JD, kèm đánh giá chi tiết và chấm điểm từ AI
+1.4 Tech Stack
+
+2. Lộ trình thực hiện chi tiết
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3. TIÊU CHÍ NGHIỆM THU 
+
+
+4. QUẢN LÝ RỦI RO
+
+
+5. QUY TRÌNH LÀM VIỆC
+5.1 Lịch báo cáo
+Báo cáo định kỳ: Hàng tuần gửi báo cáo tiến độ cho GVHD qua email/Google Meet
+Nội dung báo cáo: Review công việc tuần trước → Cập nhật tiến độ → Kế hoạch tuần mới → Ghi chú vấn đề gặp phải
+Liên hệ GVHD đột xuất khi có blocker kỹ thuật cần hỗ trợ
+
+5.2 GitHub Workflow
+Branch strategy: main (production) ← dev (integration) ← feature/[tên-tính-năng]
+Quy tắc commit message: feat: / fix: / refactor: / docs: / test: + mô tả ngắn tiếng Anh
+Pull Request: tự review code trước khi merge vào dev
+Code freeze: Tuần 7 – chỉ merge hotfix, không thêm feature mới
+
+5.3 Giao tiếp & Báo cáo
+Công cụ: GitHub Issues (theo dõi task + bug) + Google Drive (tài liệu)
+Cập nhật tiến độ lên GitHub Issues vào cuối mỗi ngày làm việc
+Tổng hợp báo cáo tuần gửi GVHD trước buổi họp
+File tài liệu lưu trên Google Drive cá nhân, chia sẻ với GVHD
+
+6. DANH SÁCH TÀI NGUYÊN
+6.1 API & Dịch vụ bên ngoài
+Google Gemini API – Phân tích CV bằng AI, viết Cover Letter, nâng cấp nội dung CV, chấm điểm phỏng vấn
+LinkedIn / Indeed / Naukri – Tổng hợp link tìm kiếm việc làm từ nhiều nền tảng (JobRadar)
+Kaggle Open Datasets – Dữ liệu kỹ năng, vai trò công việc IT, danh sách trường đại học
+
+6.2 Thư viện & Framework chính
+Streamlit – Framework UI chính cho toàn bộ giao diện multi-page app
+spaCy (en_core_web_sm) – Trích xuất thực thể, phân tích cú pháp, tokenization cho CV và JD
+FAISS + SentenceTransformers – Lập chỉ mục vector ngữ nghĩa và so khớp vai trò công việc (CareerMatch)
+python-docx + Jinja2 – Tạo và xuất CV sang định dạng DOCX/HTML với template engine
+RapidFuzz – Fuzzy matching để chuẩn hóa kỹ năng từ CV với từ điển skills.json
+
+6.3 Công cụ phát triển
+VS Code + GitHub Copilot – IDE và AI coding assistant
+PyMuPDF (fitz) – Trích xuất văn bản từ file PDF resume
+Postman – Test API endpoints (FastAPI backend)
+Altair + Pandas – Trực quan hóa dữ liệu thị trường lao động trên trang chủ
+Google Chrome DevTools – Debug giao diện Streamlit
+
+Tên dự án | CareerForge AI – Bộ công cụ Hỗ trợ CV, Phân tích Nghề nghiệp và Luyện Phỏng vấn bằng AI
+Mã môn học | Đồ án liên ngành
+Thời gian | Tháng 04/2026 – 06/2026 (7 tuần)
+Hình thức làm việc | Cá nhân, sử dụng GitHub quản lý mã nguồn
+Giảng viên hướng dẫn | TS. Nguyễn Thị Thùy Liên
+Công nghệ chính | Python · Streamlit · spaCy NLP · FAISS · SentenceTransformers · Google Gemini API · FastAPI
+MSV | Họ và Tên | Vai trò | Trách nhiệm chính
+22014000 | Bùi Văn Bằng | Cá nhân / Full-stack Dev | Kiến trúc hệ thống · Gemini API Integration
+spaCy NLP Parser · ATS Tune-Up
+ResumeBuilder · JobMatcher · CareerMatch
+SkillBridge · Cover Letter
+Interview Prep · UI/UX · Testing
+Tầng | Công nghệ | Thư viện / Công cụ | Mục đích sử dụng
+Frontend | Streamlit 1.45 | Multi-page app, st.tabs, st.columns, Custom CSS | Giao diện người dùng & routing
+NLP Engine | spaCy 3.8 + en_core_web_sm | NER, POS tagging, Dependency parsing | Trích xuất thông tin CV & JD
+Semantic Search | FAISS + SentenceTransformers | Vector embeddings, Cosine similarity | So khớp ngữ nghĩa vai trò công việc (CareerMatch)
+AI Engine | Google Gemini API | Prompt engineering, Structured JSON output | ATS AI analysis, Cover Letter, Interview scoring, Resume enhancement
+Document Processing | python-docx + PyMuPDF | Jinja2 templates, PDF text extraction | Đọc CV (PDF/DOCX) & xuất CV mới
+Skill Matching | RapidFuzz + JSON datasets | skills.json, skill_to_job.json, job_to_skill.json | Fuzzy matching & chuẩn hóa kỹ năng
+Backend API | FastAPI + Uvicorn | REST endpoints, Pydantic validation | API server cho tích hợp ngoài
+DevOps | GitHub | Branch strategy, Pull Request, Code review | Version control & collaboration
+Tuần 1: Nghiên cứu và khởi động | Tuần 1: Nghiên cứu và khởi động | Tuần 1: Nghiên cứu và khởi động | Tuần 1: Nghiên cứu và khởi động
+Mục tiêu tuần | Xác lập nền tảng kỹ thuật: nghiên cứu spaCy NLP, chuẩn bị từ điển kỹ năng, thiết kế prompt Gemini, tạo repo | Xác lập nền tảng kỹ thuật: nghiên cứu spaCy NLP, chuẩn bị từ điển kỹ năng, thiết kế prompt Gemini, tạo repo | Xác lập nền tảng kỹ thuật: nghiên cứu spaCy NLP, chuẩn bị từ điển kỹ năng, thiết kế prompt Gemini, tạo repo
+Thành viên | Nhiệm vụ cụ thể | Sản phẩm bàn giao | Tiêu chí hoàn thành
+Bằng | Nghiên cứu Gemini API: prompt engineering cho phân tích CV, structured JSON output, token limit.
+Thiết kế kiến trúc ATS Tune-Up Engine (13 tiêu chí kiểm tra).
+Nghiên cứu spaCy pipeline: tokenization, NER, POS tagging.
+Thu thập và chuẩn hóa bộ dữ liệu skills.json (500+ kỹ năng IT).
+Nghiên cứu RapidFuzz cho fuzzy matching kỹ năng.
+Nghiên cứu Streamlit multi-page app: routing, session state, custom CSS.
+Thu thập dữ liệu job_to_skill.json và skill_to_job.json.
+Thiết lập repo GitHub: branch strategy, .env template, cấu trúc thư mục. | Tài liệu nghiên cứu Gemini API và spaCy NLP.
+Danh sách 13 tiêu chí ATS (pseudocode).
+File skills.json, job_to_skill.json, skill_to_job.json đã chuẩn hóa.
+GitHub repo với README đầy đủ. | Prompt Gemini trả về JSON hợp lệ cho 5 CV mẫu.
+spaCy trích xuất đúng entities từ 10 CV mẫu.
+Fuzzy match đạt accuracy ≥ 85%.
+Repo có đủ branch: main, dev, feature/*.
+Tuần 2: Thiết kế hệ thống và parser cơ bản | Tuần 2: Thiết kế hệ thống và parser cơ bản | Tuần 2: Thiết kế hệ thống và parser cơ bản | Tuần 2: Thiết kế hệ thống và parser cơ bản
+Mục tiêu tuần | Hoàn thiện sơ đồ kiến trúc hệ thống + CV Parser & JD Parser ban đầu bằng spaCy | Hoàn thiện sơ đồ kiến trúc hệ thống + CV Parser & JD Parser ban đầu bằng spaCy | Hoàn thiện sơ đồ kiến trúc hệ thống + CV Parser & JD Parser ban đầu bằng spaCy
+Thành viên | Nhiệm vụ cụ thể | Sản phẩm bàn giao | Tiêu chí hoàn thành
+Bằng | Vẽ sơ đồ kiến trúc hệ thống: luồng dữ liệu giữa các module.
+Vẽ Use-case diagram & Sequence diagram: luồng ATS, JobMatcher, CareerMatch.
+Xây dựng preprocessor/parser.py: đọc PDF/DOCX bằng PyMuPDF và python-docx.
+Xây dựng preprocessor/skills.py: trích xuất kỹ năng từ CV bằng spaCy + fuzzy matching.
+Xây dựng preprocessor/personal_info.py: trích xuất tên, email, SĐT.
+Xây dựng preprocessor/jd_section_parser.py: phân đoạn JD thành title, requirements, responsibilities.
+Xây dựng trang Home.py: dashboard thống kê thị trường IT, metrics grid, biểu đồ Altair.
+Thiết lập custom CSS cho Streamlit (Glassmorphism style). | Sơ đồ kiến trúc hệ thống (draw.io).
+Use-case + Sequence diagram.
+Module parser.py, skills.py, personal_info.py, jd_section_parser.py hoàn chỉnh.
+Trang Home.py với dashboard.
+File CSS custom. | Parser đọc đúng text từ 10 file CV (PDF + DOCX).
+Trích xuất đúng ≥ 80% kỹ năng từ 10 CV mẫu.
+JD parser phân đoạn đúng 10 JD mẫu.
+Sơ đồ kiến trúc được GVHD chấp thuận.
+Tuần 3: Phát triển core features (đợt 1) | Tuần 3: Phát triển core features (đợt 1) | Tuần 3: Phát triển core features (đợt 1) | Tuần 3: Phát triển core features (đợt 1)
+Mục tiêu tuần | Hoàn thành ATS Tune-Up Engine (local + AI) + trang JobRadar + giao diện sidebar | Hoàn thành ATS Tune-Up Engine (local + AI) + trang JobRadar + giao diện sidebar | Hoàn thành ATS Tune-Up Engine (local + AI) + trang JobRadar + giao diện sidebar
+Thành viên | Nhiệm vụ cụ thể | Sản phẩm bàn giao | Tiêu chí hoàn thành
+Bằng | Xây dựng analyzer/resume_analysis.py: 13 tiêu chí kiểm tra ATS local.
+Tích hợp Gemini API vào analyzer/analysis_enhancer.py: phân tích AI theo từng section.
+Xây dựng trang 6_ATS_TuneUp.py: upload CV → hiển thị kết quả local vs AI side-by-side.
+Xây dựng trang 1_JobRadar.py: nhập vai trò, địa điểm → tạo link tìm việc trên 8 nền tảng.
+Thiết kế UI card cho từng nền tảng tuyển dụng.
+Xây dựng preprocessor/professional_info.py: trích xuất kinh nghiệm, học vấn từ CV.
+Thiết kế và code ui/render_header.py, ui/render_footer.py.
+Hoàn thiện custom CSS: metrics grid, skill pills, glassmorphism cards. | Module resume_analysis.py (13 checks).
+Module analysis_enhancer.py (Gemini).
+Trang ATS Tune-Up hoàn chỉnh.
+Trang JobRadar hoàn chỉnh.
+Module professional_info.py.
+Module render_header.py, render_footer.py.
+CSS hoàn chỉnh cho toàn app. | ATS local chạy đúng 13 tiêu chí cho 10 CV mẫu.
+Gemini trả về phân tích structured JSON < 15s.
+JobRadar tạo đúng URL cho tất cả 8 nền tảng.
+Header/Footer hiển thị đúng trên tất cả các trang.
+Tuần 4: Phát triển core features (đợt 2) | Tuần 4: Phát triển core features (đợt 2) | Tuần 4: Phát triển core features (đợt 2) | Tuần 4: Phát triển core features (đợt 2)
+Mục tiêu tuần | Hoàn thành JobMatcher + CareerMatch (FAISS) + SkillBridge | Hoàn thành JobMatcher + CareerMatch (FAISS) + SkillBridge | Hoàn thành JobMatcher + CareerMatch (FAISS) + SkillBridge
+Thành viên | Nhiệm vụ cụ thể | Sản phẩm bàn giao | Tiêu chí hoàn thành
+Bằng | Xây dựng thuật toán so khớp CV-JD cho trang JobMatcher: phân đoạn JD, trọng số theo section, match hard/soft skills.
+Tích hợp Gemini để bổ sung phân tích chi tiết.
+Hiển thị compatibility score, missing skills, learning resources.
+Xây dựng recommender/top_n_jobs.py: FAISS vector search cho CareerMatch.
+Tạo job_embeddings.npy bằng SentenceTransformers.
+Xây dựng trang 3_CareerMatch.py: upload CV → gợi ý top N vai trò phù hợp nhất.
+Xây dựng trang 4_SkillBridge.py: chọn vai trò → so sánh kỹ năng CV vs yêu cầu.
+Hiển thị skill gaps, radar chart, đề xuất tài nguyên học tập.
+Xây dựng recommender/resources.py: gợi ý khóa học theo skill gap. | Trang 2_JobMatcher.py hoàn chỉnh.
+Thuật toán so khớp với weighted scoring.
+Module top_n_jobs.py + ai_model.py.
+File job_embeddings.npy.
+Trang 3_CareerMatch.py hoàn chỉnh.
+Trang 4_SkillBridge.py hoàn chỉnh.
+Module resources.py. | Compatibility score chính xác cho 10 cặp CV-JD test.
+CareerMatch gợi ý ≥ 5 vai trò phù hợp trong < 5s.
+SkillBridge hiển thị đúng skill gaps cho 10 cặp CV-Role.
+Resources gợi ý ≥ 3 tài nguyên cho mỗi kỹ năng thiếu.
+Tuần 5: Phát triển core features (đợt 3) | Tuần 5: Phát triển core features (đợt 3) | Tuần 5: Phát triển core features (đợt 3) | Tuần 5: Phát triển core features (đợt 3)
+Mục tiêu tuần | Hoàn thành ResumeBuilder + Cover Letter + Mock Interview | Hoàn thành ResumeBuilder + Cover Letter + Mock Interview | Hoàn thành ResumeBuilder + Cover Letter + Mock Interview
+Thành viên | Nhiệm vụ cụ thể | Sản phẩm bàn giao | Tiêu chí hoàn thành
+Bằng | Xây dựng builder/ai_features.py: AI text enhancement cho từng section CV (Gemini rewrite/improve).
+Xây dựng builder/generator_standard.py: render CV sang DOCX với 4 themes (Modern, Minimal, Harvard, Standard).
+Xây dựng trang 5_ResumeBuilder.py: biểu mẫu động, preview, export.
+Xây dựng builder/form_inputs.py: dynamic form generation cho ResumeBuilder.
+Xây dựng builder/resume_enhancer.py: AI content polish.
+Xây dựng trang 8_Interview_Prep.py: mock interview với câu hỏi tùy chỉnh theo CV và JD.
+Tích hợp Gemini AI cho chấm điểm câu trả lời, nhận xét chi tiết từng câu.
+Xây dựng trang 7_Cover_Letter.py: tạo thư ứng tuyển tự động dựa trên CV và JD bằng Gemini. | Module ai_features.py, generator_standard.py (4 themes), form_inputs.py, resume_enhancer.py hoàn chỉnh.
+Trang ResumeBuilder hoàn chỉnh.
+Trang Interview Prep hoàn chỉnh.
+Trang Cover Letter hoàn chỉnh. | ResumeBuilder xuất đúng DOCX cho 4 themes.
+AI enhancement cải thiện nội dung rõ rệt.
+Mock Interview tạo ≥ 5 câu hỏi phù hợp với CV/JD.
+Cover Letter được tạo phù hợp với JD trong < 10s.
+Tuần 6: Tối ưu hóa và kiểm thử tích hợp | Tuần 6: Tối ưu hóa và kiểm thử tích hợp | Tuần 6: Tối ưu hóa và kiểm thử tích hợp | Tuần 6: Tối ưu hóa và kiểm thử tích hợp
+Mục tiêu tuần | Tối ưu prompt Gemini + xử lý lỗi fallback + kiểm thử thuật toán + tối ưu Streamlit UI | Tối ưu prompt Gemini + xử lý lỗi fallback + kiểm thử thuật toán + tối ưu Streamlit UI | Tối ưu prompt Gemini + xử lý lỗi fallback + kiểm thử thuật toán + tối ưu Streamlit UI
+Thành viên | Nhiệm vụ cụ thể | Sản phẩm bàn giao | Tiêu chí hoàn thành
+Bằng | Tối ưu prompt Gemini: giảm token, cải thiện chất lượng output.
+Xây dựng cơ chế fallback: khi Gemini API lỗi/timeout → hiển thị thông báo và dùng kết quả local.
+Viết Integration Test: test toàn bộ luồng ATS + JobMatcher + ResumeBuilder end-to-end.
+Kiểm thử thuật toán CareerMatch FAISS: validate kết quả với 20 CV khác nhau.
+Kiểm thử JobRadar: xác nhận URL đúng cho tất cả nền tảng.
+Kiểm thử Interview Prep: chất lượng câu hỏi và scoring.
+UI/UX final pass: spacing, typography, color contrast, responsive layout.
+Kiểm thử SkillBridge, Cover Letter và ResumeBuilder: chất lượng output. | Gemini prompt tối ưu (response < 10s).
+Fallback mechanism hoạt động.
+Integration test suite (≥ 10 test cases).
+QA report cho CareerMatch, JobRadar, Interview Prep, SkillBridge, Cover Letter, ResumeBuilder.
+UI QA checklist hoàn thành. | Gemini response time < 10s (p95).
+Không có lỗi crash khi Gemini timeout.
+Tất cả integration tests pass.
+CareerMatch gợi ý vai trò có ý nghĩa cho 20/20 CV.
+UI không bị vỡ layout ở viewport 375px.
+Tuần 7: Kiểm thử cuối và chuẩn bị demo | Tuần 7: Kiểm thử cuối và chuẩn bị demo | Tuần 7: Kiểm thử cuối và chuẩn bị demo | Tuần 7: Kiểm thử cuối và chuẩn bị demo
+Mục tiêu tuần | Đảm bảo chất lượng sản phẩm cuối cùng + Hoàn thiện tài liệu + Demo Day | Đảm bảo chất lượng sản phẩm cuối cùng + Hoàn thiện tài liệu + Demo Day | Đảm bảo chất lượng sản phẩm cuối cùng + Hoàn thiện tài liệu + Demo Day
+Thành viên | Nhiệm vụ cụ thể | Sản phẩm bàn giao | Tiêu chí hoàn thành
+Bằng | Viết báo cáo đồ án: kiến trúc hệ thống, quyết định thiết kế, kết quả đạt được, hạn chế.
+Code freeze: merge tất cả branch về main, tag release v1.0.
+Chuẩn bị slide thuyết trình kỹ thuật.
+Kiểm thử cuối cùng toàn bộ happy path.
+Chuẩn bị dữ liệu Demo: 10+ CV mẫu đa dạng, 10+ JD mẫu.
+Record video demo các luồng chính (ATS, JobMatcher, CareerMatch).
+Viết user guide: hướng dẫn sử dụng cho người dùng cuối.
+Chuẩn bị môi trường demo: localhost ổn định, requirements.txt đầy đủ. | Báo cáo đồ án (≥ 30 trang).
+Release v1.0 trên GitHub.
+Slide thuyết trình (≤ 20 slide).
+Bộ dữ liệu demo (CV + JD mẫu).
+Video demo (3-5 phút).
+User guide document.
+Demo environment setup guide. | Không có Critical bug trong phiên demo.
+Báo cáo được GVHD chấp thuận.
+Demo chạy ổn định trong 30 phút liên tục.
+Demo data chạy được trên môi trường mới trong < 5 phút.
+Video demo rõ ràng, có voiceover.
+Tính năng | Tiêu chí chính | Tiêu chí phụ | Người verify
+ATS Tune-Up | 13 tiêu chí local chạy đúng; Gemini trả về phân tích structured < 15s | Fallback hoạt động khi Gemini lỗi; hiển thị warnings/successes rõ ràng | Bằng
+JobMatcher | Compatibility score chính xác cho ≥ 10 cặp CV-JD test | Missing skills và learning resources được gợi ý đúng | Bằng
+CareerMatch | Gợi ý ≥ 5 vai trò phù hợp trong < 5s; FAISS search có ý nghĩa ngữ nghĩa | Hiển thị mô tả vai trò và kỹ năng yêu cầu | Bằng
+ResumeBuilder | Xuất đúng DOCX cho 4 themes; AI enhancement cải thiện nội dung rõ rệt | Form động hoạt động mượt cho ≥ 5 entries/section | Bằng
+Cover Letter & Interview | Cover Letter phù hợp JD < 10s; Mock Interview ≥ 5 câu hỏi phù hợp | Gemini scoring nhất quán và có ý nghĩa | Bằng
+JobRadar & SkillBridge | JobRadar tạo đúng URL 8 nền tảng; SkillBridge hiển thị skill gaps chính xác | Radar chart và resources gợi ý đúng | Bằng
+UI/UX & Performance | UI responsive, không vỡ layout; Streamlit load < 5s | WCAG contrast ≥ 4.5:1; custom CSS nhất quán trên Chrome/Edge | Bằng
+Rủi ro | Xác suất | Mức độ ảnh hưởng | Phương án xử lý | Người chịu trách nhiệm
+Gemini API timeout / quota limit | Cao | Trung bình | Xây dựng fallback hiển thị kết quả local; quản lý API key; thông báo lỗi thân thiện | Bằng
+spaCy parser trích xuất sai thông tin từ CV | Cao | Cao | Bổ sung regex patterns; fine-tune fuzzy matching threshold; validate với nhiều định dạng CV | Bằng
+Xuất file DOCX bị lỗi định dạng | Trung bình | Cao | Test kỹ python-docx template; validate output trên nhiều phiên bản Word | Bằng
+FAISS index không khớp ngữ nghĩa chính xác | Trung bình | Trung bình | Thử nghiệm nhiều SentenceTransformer models; kết hợp keyword matching để bổ trợ | Bằng
+Streamlit session state bị mất khi chuyển trang | Trung bình | Cao | Sử dụng st.session_state đúng cách; cache dữ liệu với @st.cache_data | Bằng
+Deadline trễ do scope creep | Cao | Cao | Freeze scope sau tuần 2; weekly review; ưu tiên features theo MoSCoW | Bằng

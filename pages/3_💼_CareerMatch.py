@@ -79,8 +79,13 @@ if uploaded_file is not None:
     st.write("### ⚙️ Động cơ Gợi ý")
     search_method = st.radio(
         "Chọn thuật toán gợi ý:", 
-        ["So khớp Kỹ năng Cơ bản", "Tìm kiếm Ngữ nghĩa AI (Transformer)", "Tìm kiếm Từ khóa AI (TF-IDF)"]
+        ["AI Lai (Hybrid: FAISS + TF-IDF)", "So khớp Kỹ năng Cơ bản", "Tìm kiếm Ngữ nghĩa AI (Transformer)", "Tìm kiếm Từ khóa AI (TF-IDF)"]
     )
+    
+    hybrid_alpha = 0.5
+    if search_method == "AI Lai (Hybrid: FAISS + TF-IDF)":
+        st.write("Trọng số Ngữ nghĩa (Alpha):")
+        hybrid_alpha = st.slider("1.0 = Chỉ dùng Ngữ nghĩa, 0.0 = Chỉ dùng Từ khóa", min_value=0.0, max_value=1.0, value=0.6, step=0.1)
 
     st.write("Số lượng việc làm gợi ý:")
     topNJobs = st.slider("", min_value=1, max_value=20, value=5, key="topNJobs", label_visibility="collapsed")
@@ -111,7 +116,9 @@ if uploaded_file is not None:
                 st.info("Đang tải động cơ AI...")
                 ai_recommender = load_ai_recommender()
                 st.info("Đang phân tích CV bằng AI...")
-                if "Transformer" in search_method:
+                if "Hybrid" in search_method:
+                    recommendations = ai_recommender.recommend_jobs_hybrid(extracted_text, top_n=topNJobs, alpha=hybrid_alpha)
+                elif "Transformer" in search_method:
                     recommendations = ai_recommender.recommend_jobs(extracted_text, top_n=topNJobs)
                 else:
                     recommendations = ai_recommender.recommend_jobs_tfidf(extracted_text, top_n=topNJobs)

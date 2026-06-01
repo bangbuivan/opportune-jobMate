@@ -83,3 +83,45 @@ class JobRecommendationSystem:
         
         recommended_jobs = self.job_info.iloc[top_indices].to_dict(orient="records")
         return {"recommended_jobs": recommended_jobs}
+
+    def recommend_jobs_hybrid(self, resume_text, top_n=20, alpha=0.5):
+        """
+        KẾT HỢP Ngữ nghĩa (FAISS) và Từ khóa (TF-IDF).
+        alpha: Tỉ lệ trọng số của FAISS (Semantic). 1.0 = Chỉ Semantic, 0.0 = Chỉ Keyword.
+        """
+        resume_text_clean = self.clean_text(resume_text)
+        
+        # 1. TF-IDF Scores
+        vectorizer = TfidfVectorizer()
+        job_vectors = vectorizer.fit_transform(self.jobs_texts)
+        resume_vector = vectorizer.transform([resume_text_clean])
+        tfidf_scores = (job_vectors @ resume_vector.T).toarray().flatten()
+        
+        if tfidf_scores.max() - tfidf_scores.min() > 0:
+            tfidf_scores = (tfidf_scores - tfidf_scores.min()) / (tfidf_scores.max() - tfidf_scores.min())
+        else:
+            tfidf_scores = np.zeros_like(tfidf_scores)
+            
+        # 2. FAISS Scores
+        resume_embedding = MODEL.encode([resume_text_clean], convert_to_numpy=True).astype(np.float16)
+        n_jobs = self.job_embeddings.shape[0]
+        distances, indices = self.index.search(resume_embedding.astype(np.float16), n_jobs)
+        
+        faiss_scores = np.zeros(n_jobs)
+        for score, idx in zip(distances[0], indices[0]):
+            faiss_scores[idx] = score
+            
+        if faiss_scores.max() - faiss_scores.min() > 0:
+            faiss_scores = (faiss_scores - faiss_scores.min()) / (faiss_scores.max() - faiss_scores.min())
+        else:
+            faiss_scores = np.zeros_like(faiss_scores)
+            
+        # 3. Hybrid Scoring
+        hybrid_scores = alpha * faiss_scores + (1 - alpha) * tfidf_scores
+        top_indices = np.argsort(hybrid_scores)[-top_n:][::-1]
+        
+        recommended_jobs = self.job_info.iloc[top_indices].copy()
+        # Ta có thể thêm điểm số vào kết quả nếu muốn hiển thị
+        recommended_jobs['match_score'] = hybrid_scores[top_indices]
+        
+        return {"recommended_jobs": recommended_jobs.to_dict(orient="records")}
